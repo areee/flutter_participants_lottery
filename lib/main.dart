@@ -41,6 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: _incrementCounter, // TODO: replace with a method that starts a Modal Bottom Sheet. E.g.: https://gallery.flutter.dev/#/demo/bottom-sheet
+            icon: const Icon(Icons.settings),
+            tooltip: 'Asetukset',
+          )
+        ],
       ),
       body: Center(
         child: Column(
