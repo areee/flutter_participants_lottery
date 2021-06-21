@@ -49,6 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
               'Järjestys',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Nimet (erottele pilkulla)'
+              ),
+            ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
