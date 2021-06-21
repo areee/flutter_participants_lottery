@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_participants_lottery/lottery_logic.dart' as lottery;
 
 void main() {
   runApp(MyApp());
