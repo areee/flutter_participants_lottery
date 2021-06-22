@@ -32,6 +32,60 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   CountDownController _countDownController = CountDownController();
   int _duration = 90;
+  TextEditingController _textEditingController = TextEditingController();
+  String codeDialog = '';
+  String valueText = '';
+
+  void _runLottery(){
+    setState(() {
+      codeDialog = lottery.runLottery(codeDialog);
+    });
+  }
+
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Syötä nimet'),
+            content: TextField(
+              onChanged: (value) {
+                setState(() {
+                  valueText = value;
+                });
+              },
+              controller: _textEditingController,
+              decoration: InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  setState(() {
+                    codeDialog = valueText;
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+
+            ],
+          );
+        });
+  }
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: [
           IconButton(
-            onPressed: (){}, // TODO: replace with a method that starts a Modal Bottom Sheet. E.g.: https://gallery.flutter.dev/#/demo/bottom-sheet
+            onPressed: (){
+              _displayTextInputDialog(context);
+            },
             icon: const Icon(Icons.settings),
             tooltip: 'Asetukset',
           )
@@ -89,16 +145,10 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             Text(
-              'A, B, C, D',
+              '$codeDialog',
               style: Theme.of(context).textTheme.headline6,
             ),
-            // TextField(
-            //   decoration: InputDecoration(
-            //     border: OutlineInputBorder(),
-            //     hintText: 'Nimet (erottele pilkulla)'
-            //   ),
-            // ),
-            ElevatedButton.icon(onPressed: (){}, icon: const Icon(Icons.shuffle,size: 18,), label: Text("Arvo"))
+            ElevatedButton.icon(onPressed: (){_runLottery();}, icon: const Icon(Icons.shuffle,size: 18,), label: Text("Arvo"))
           ],
         ),
       ),
@@ -137,8 +187,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              primary: Colors.green, // background
-              onPrimary: Colors.white, // foreground
+              primary: Colors.green,
+              onPrimary: Colors.white,
             )
         ));
   }
