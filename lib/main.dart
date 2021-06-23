@@ -3,9 +3,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_participants_lottery/lottery_logic.dart' as lottery;
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -34,12 +32,30 @@ class _MyHomePageState extends State<MyHomePage> {
   CountDownController _countDownController = CountDownController();
   int _duration = 90;
   TextEditingController _textEditingController = TextEditingController();
-  String codeDialog = '';
-  String valueText = '';
+  String _participantNames = '';
+  String _valueText = '';
 
-  void _runLottery(){
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+    _textEditingController = TextEditingController(text: _participantNames);
+  }
+
+  // Load data in SharedPreferences on start
+  void _loadData() async {
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
-      codeDialog = lottery.runLottery(codeDialog);
+      _participantNames = (prefs.getString('participantNames') ?? '');
+    });
+  }
+
+  // Run lottery when the button is clicked
+  void _runLottery() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _participantNames = lottery.runLottery(_participantNames);
+      prefs.setString('participantNames', _participantNames);
     });
   }
 
@@ -52,15 +68,16 @@ class _MyHomePageState extends State<MyHomePage> {
             content: TextField(
               onChanged: (value) {
                 setState(() {
-                  valueText = value;
+                  _valueText = value;
                 });
               },
-              controller: _textEditingController,
-              decoration: InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
+              controller: _textEditingController..text = _participantNames,
+              decoration:
+                  InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
             ),
             actions: <Widget>[
               TextButton(
-                child: Text('Cancel'),
+                child: Text('Peruuta'),
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
@@ -69,14 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextButton(
                 child: Text('OK'),
-                onPressed: () {
+                onPressed: () async {
+                  final prefs = await SharedPreferences.getInstance();
                   setState(() {
-                    codeDialog = valueText;
+                    _participantNames = _valueText;
+                    prefs.setString('participantNames', _participantNames);
                     Navigator.pop(context);
                   });
                 },
               ),
-
             ],
           );
         });
@@ -95,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: [
           IconButton(
-            onPressed: (){
+            onPressed: () {
               _displayTextInputDialog(context);
             },
             icon: const Icon(Icons.settings),
@@ -112,44 +130,52 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline3,
             ),
             CircularCountDownTimer(
-                width: MediaQuery.of(context).size.width/2,
-                height: MediaQuery.of(context).size.height/2,
-                duration: _duration,
-                initialDuration: 0,
-                fillColor: Colors.greenAccent[700]!,
-                ringColor: Colors.grey[300]!,
-                controller: _countDownController,
-                ringGradient: null,
-                fillGradient: null,
-                backgroundColor: Colors.green[700],
-                backgroundGradient: null,
-                strokeWidth: 20.0,
-                strokeCap: StrokeCap.round,
-                textStyle: TextStyle(
+              width: MediaQuery.of(context).size.width / 2,
+              height: MediaQuery.of(context).size.height / 2,
+              duration: _duration,
+              initialDuration: 0,
+              fillColor: Colors.greenAccent[700]!,
+              ringColor: Colors.grey[300]!,
+              controller: _countDownController,
+              ringGradient: null,
+              fillGradient: null,
+              backgroundColor: Colors.green[700],
+              backgroundGradient: null,
+              strokeWidth: 20.0,
+              strokeCap: StrokeCap.round,
+              textStyle: TextStyle(
                   fontSize: 33.0,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),
-                textFormat: CountdownTextFormat.S,
-                isReverse: true,
-                isReverseAnimation: true,
-                isTimerTextShown: true,
-                autoStart: false,
-                onStart: () {
-                  print('Countdown Started');
-                },
-                onComplete: () {
-                  print('Countdown Ended');
-                },
+              textFormat: CountdownTextFormat.S,
+              isReverse: true,
+              isReverseAnimation: true,
+              isTimerTextShown: true,
+              autoStart: false,
+              onStart: () {
+                print('Countdown Started');
+              },
+              onComplete: () {
+                print('Countdown Ended');
+              },
             ),
             Text(
               'Järjestys:',
               style: Theme.of(context).textTheme.headline4,
             ),
             Text(
-              '$codeDialog',
+              '$_participantNames',
               style: Theme.of(context).textTheme.headline6,
             ),
-            ElevatedButton.icon(onPressed: (){_runLottery();}, icon: const Icon(Icons.shuffle,size: 18,), label: Text("Arvo"))
+            ElevatedButton.icon(
+                onPressed: () {
+                  _runLottery();
+                },
+                icon: const Icon(
+                  Icons.shuffle,
+                  size: 18,
+                ),
+                label: Text("Arvo"))
           ],
         ),
       ),
@@ -159,21 +185,25 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             width: 30,
           ),
-          _button(title: "Start", onPressed: () => _countDownController.start()),
+          _button(
+              title: "Start", onPressed: () => _countDownController.start()),
           SizedBox(
             width: 10,
           ),
-          _button(title: "Pause", onPressed: () => _countDownController.pause()),
+          _button(
+              title: "Pause", onPressed: () => _countDownController.pause()),
           SizedBox(
             width: 10,
           ),
-          _button(title: "Resume", onPressed: () => _countDownController.resume()),
+          _button(
+              title: "Resume", onPressed: () => _countDownController.resume()),
           SizedBox(
             width: 10,
           ),
           _button(
               title: "Restart",
-              onPressed: () => _countDownController.restart(duration: _duration))
+              onPressed: () =>
+                  _countDownController.restart(duration: _duration))
         ],
       ),
     );
@@ -190,7 +220,6 @@ class _MyHomePageState extends State<MyHomePage> {
             style: ElevatedButton.styleFrom(
               primary: Colors.green,
               onPrimary: Colors.white,
-            )
-        ));
+            )));
   }
 }
