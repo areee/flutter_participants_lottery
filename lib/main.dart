@@ -39,7 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _loadData();
-    _textEditingController = TextEditingController(text: _participantNames);
   }
 
   // Load data in SharedPreferences on start
@@ -47,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNames = (prefs.getString('participantNames') ?? '');
+      _valueText = (prefs.getString('participantNames') ?? '');
     });
   }
 
