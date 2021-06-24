@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:emoji_alert/emoji_alert.dart';
 import 'package:flutter_participants_lottery/lottery_logic.dart' as lottery;
 
 void main() => runApp(MyApp());
@@ -155,9 +156,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onStart: () {
                 print('Countdown Started');
               },
-              onComplete: () {
-                print('Countdown Ended');
-              },
+              onComplete: () => EmojiAlert(
+                  description:  Column(
+                    children: [
+                      Text("Aika loppui"),
+                    ],
+                  )).displayAlert(context),
             ),
             Text(
               'Järjestys:',
