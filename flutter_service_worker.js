@@ -4,17 +4,28 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "95b8c9203a903310ae6536e25c429227",
-"index.html": "2a9e2f4dc48d67d0bb7a80c6a47bc250",
-"/": "2a9e2f4dc48d67d0bb7a80c6a47bc250",
-"main.dart.js": "ee17c845c627be43b9e38342bd2a90f1",
+"index.html": "e50d98db4a3f28c2f1cac86b45309e68",
+"/": "e50d98db4a3f28c2f1cac86b45309e68",
+"main.dart.js": "2f41570ea42daaf45ab0d713f980025b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "765907cc2df5caed97fd8bdfe281eead",
-"assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
-"assets/NOTICES": "2ebb26394847068992bb72b106baa7b6",
+"assets/AssetManifest.json": "e7c8daf83539e456ba531997a18bd9c8",
+"assets/NOTICES": "762fbcc799457322b0dce96a6e84aa30",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
+"assets/packages/emoji_alert/assets/images/happy.png": "a07aec7220caf56032c2ad45f27c5318",
+"assets/packages/emoji_alert/assets/images/joyful.png": "f0a8ce67861f977e4799698454e8d1a2",
+"assets/packages/emoji_alert/assets/images/sad.png": "fad0d21863486e9fef44e02f642d2954",
+"assets/packages/emoji_alert/assets/images/confused.png": "7aaa9691248486682948d20575f3778b",
+"assets/packages/emoji_alert/assets/images/scared.png": "ce864d04dd7abc6f94cfb9c2b10c5dc2",
+"assets/packages/emoji_alert/assets/images/angry.png": "2014fd93537401d7b686cf5bb0ff00ee",
+"assets/packages/emoji_alert/assets/images/wink.png": "7eedaaef478d3f2ad4ecb4d1366b4392",
+"assets/packages/emoji_alert/assets/images/cool.png": "e1085fca6a978e6a30bdbc3d2add03db",
+"assets/packages/emoji_alert/assets/images/shocked.png": "7f3c5ddb8e39c3449e648d476a978858",
+"assets/packages/emoji_alert/assets/images/laughing.png": "d94e33b50d827fd87f6b6de33abf3f59",
+"assets/packages/emoji_alert/assets/images/smile.png": "02543668b6881fcae92fd9cbc78f70de",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1"
 };
 
