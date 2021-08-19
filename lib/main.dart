@@ -13,8 +13,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
-      ),
+          brightness: Brightness.light, primaryColor: Colors.lightGreen),
+      // Provide light theme
+      darkTheme: ThemeData(
+          brightness: Brightness.dark, primaryColor: Colors.lightGreen),
       home: MyHomePage(title: 'Osallistujien arvonta'),
     );
   }
@@ -126,60 +128,75 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Puheaika',
-              style: Theme.of(context).textTheme.headline3,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Puheaika',
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ),
-            CircularCountDownTimer(
-              width: MediaQuery.of(context).size.width / 2,
-              height: MediaQuery.of(context).size.height / 2,
-              duration: _duration,
-              initialDuration: 0,
-              fillColor: Colors.greenAccent[700]!,
-              ringColor: Colors.grey[300]!,
-              controller: _countDownController,
-              ringGradient: null,
-              fillGradient: null,
-              backgroundColor: Colors.green[700],
-              backgroundGradient: null,
-              strokeWidth: 20.0,
-              strokeCap: StrokeCap.round,
-              textStyle: TextStyle(
-                  fontSize: 33.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-              textFormat: CountdownTextFormat.S,
-              isReverse: true,
-              isReverseAnimation: true,
-              isTimerTextShown: true,
-              autoStart: false,
-              onStart: () {
-                print('Countdown Started');
-              },
-              onComplete: () => EmojiAlert(
-                  description:  Column(
-                    children: [
-                      Text("Aika loppui"),
-                    ],
-                  )).displayAlert(context),
-            ),
-            Text(
-              'Järjestys:',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Text(
-              '$_participantNames',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            ElevatedButton.icon(
-                onPressed: () {
-                  _runLottery();
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircularCountDownTimer(
+                width: MediaQuery.of(context).size.width / 2,
+                height: MediaQuery.of(context).size.height / 2,
+                duration: _duration,
+                initialDuration: 0,
+                fillColor: Colors.greenAccent[700]!,
+                ringColor: Colors.grey[300]!,
+                controller: _countDownController,
+                ringGradient: null,
+                fillGradient: null,
+                backgroundColor: Colors.green[700],
+                backgroundGradient: null,
+                strokeWidth: 20.0,
+                strokeCap: StrokeCap.round,
+                textStyle: TextStyle(
+                    fontSize: 33.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+                textFormat: CountdownTextFormat.S,
+                isReverse: true,
+                isReverseAnimation: true,
+                isTimerTextShown: true,
+                autoStart: false,
+                onStart: () {
+                  print('Countdown Started');
                 },
-                icon: const Icon(
-                  Icons.shuffle,
-                  size: 18,
-                ),
-                label: Text("Arvo"))
+                onComplete: () => EmojiAlert(
+                    description: Column(
+                  children: [
+                    Text("Aika loppui"),
+                  ],
+                )).displayAlert(context),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Järjestys:',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '$_participantNames',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton.icon(
+                  onPressed: () {
+                    _runLottery();
+                  },
+                  icon: const Icon(
+                    Icons.shuffle,
+                    size: 18,
+                  ),
+                  label: Text("Arvo")),
+            )
           ],
         ),
       ),
@@ -190,22 +207,22 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 30,
           ),
           _button(
-              title: "Start", onPressed: () => _countDownController.start()),
+              title: "Aloita", onPressed: () => _countDownController.start()),
           SizedBox(
             width: 10,
           ),
           _button(
-              title: "Pause", onPressed: () => _countDownController.pause()),
+              title: "Tauko", onPressed: () => _countDownController.pause()),
           SizedBox(
             width: 10,
           ),
           _button(
-              title: "Resume", onPressed: () => _countDownController.resume()),
+              title: "Jatka", onPressed: () => _countDownController.resume()),
           SizedBox(
             width: 10,
           ),
           _button(
-              title: "Restart",
+              title: "Aloita alusta",
               onPressed: () =>
                   _countDownController.restart(duration: _duration))
         ],
