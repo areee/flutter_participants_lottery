@@ -188,14 +188,17 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton.icon(
-                  onPressed: () {
-                    _runLottery();
-                  },
-                  icon: const Icon(
-                    Icons.shuffle,
-                    size: 18,
-                  ),
-                  label: Text("Arvo")),
+                onPressed: () {
+                  _runLottery();
+                },
+                icon: const Icon(
+                  Icons.shuffle,
+                  size: 18,
+                ),
+                label: Text("Arvo"),
+                style: ElevatedButton.styleFrom(
+                    primary: Theme.of(context).primaryColor),
+              ),
             )
           ],
         ),
