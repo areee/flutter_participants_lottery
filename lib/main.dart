@@ -1,7 +1,9 @@
+import 'package:emoji_alert/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_participants_lottery/lottery_logic.dart' as lottery;
 
 void main() => runApp(MyApp());
@@ -13,10 +15,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',
       theme: ThemeData(
-          brightness: Brightness.light, primaryColor: Colors.lightGreen),
+          brightness: Brightness.light,
+          primaryColor: Colors.lightGreen,
+          accentColor: Colors.white),
       // Provide light theme
       darkTheme: ThemeData(
-          brightness: Brightness.dark, primaryColor: Colors.lightGreen),
+          brightness: Brightness.dark,
+          primaryColor: Colors.lightGreen,
+          accentColor: Colors.black),
       home: MyHomePage(title: 'Osallistujien arvonta'),
     );
   }
@@ -32,6 +38,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  AudioCache audioCache = AudioCache();
   CountDownController _countDownController = CountDownController();
   int _duration = 90;
   TextEditingController _textEditingController = TextEditingController();
@@ -44,7 +51,17 @@ class _MyHomePageState extends State<MyHomePage> {
     _loadData();
   }
 
-  // Load data in SharedPreferences on start
+  /// Play a self-made lottery sound (made by Arttu Ylhävuori)
+  void _playLotterySound() {
+    audioCache.play('arvonta_kaynnissa.mp3', mode: PlayerMode.LOW_LATENCY);
+  }
+
+  /// Play a self-made time's up sound (made by Arttu Ylhävuori)
+  void _playTimeIsUpSound() {
+    audioCache.play('aika_loppui.mp3', mode: PlayerMode.LOW_LATENCY);
+  }
+
+  /// Load data in SharedPreferences on start
   void _loadData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -53,8 +70,30 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  // Run lottery when the button is clicked
+  /// When the time's up, show an emoji alert
+  void _timeIsUp() {
+    _playTimeIsUpSound();
+
+    EmojiAlert(
+        emojiType: EMOJI_TYPE.WINK,
+        background: Theme.of(context).accentColor,
+        enableMainButton: true,
+        mainButtonText: Text('Sulje'),
+        mainButtonColor: Theme.of(context).primaryColor,
+        onMainButtonPressed: () {
+          Navigator.pop(context);
+        },
+        description: Column(
+          children: [
+            Text('Aika loppui', style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        )).displayAlert(context);
+  }
+
+  /// Run lottery when the button is clicked
   void _runLottery() async {
+    _playLotterySound();
+
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNames = lottery.runLottery(_participantNames);
@@ -163,12 +202,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 onStart: () {
                   print('Countdown Started');
                 },
-                onComplete: () => EmojiAlert(
-                    description: Column(
-                  children: [
-                    Text("Aika loppui"),
-                  ],
-                )).displayAlert(context),
+                onComplete: () {
+                  _timeIsUp();
+                },
               ),
             ),
             Padding(
