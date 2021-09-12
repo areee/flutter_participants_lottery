@@ -11,18 +11,19 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = ThemeData(
+        brightness: Brightness.light, primaryColor: Colors.lightGreen);
+
+    final ThemeData darkTheme =
+        ThemeData(brightness: Brightness.dark, primaryColor: Colors.lightGreen);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',
-      theme: ThemeData(
-          brightness: Brightness.light,
-          primaryColor: Colors.lightGreen,
-          accentColor: Colors.white),
-      // Provide light theme
-      darkTheme: ThemeData(
-          brightness: Brightness.dark,
-          primaryColor: Colors.lightGreen,
-          accentColor: Colors.black),
+      theme: theme.copyWith(
+          colorScheme: theme.colorScheme.copyWith(secondary: Colors.white)),
+      darkTheme: darkTheme.copyWith(
+          colorScheme: darkTheme.colorScheme.copyWith(secondary: Colors.black)),
       home: MyHomePage(title: 'Osallistujien arvonta'),
     );
   }
@@ -76,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     EmojiAlert(
         emojiType: EMOJI_TYPE.WINK,
-        background: Theme.of(context).accentColor,
+        background: Theme.of(context).colorScheme.secondary,
         enableMainButton: true,
         mainButtonText: Text('Sulje'),
         mainButtonColor: Theme.of(context).primaryColor,
@@ -152,6 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).primaryColor,
         title: Text(widget.title),
         actions: [
           IconButton(
