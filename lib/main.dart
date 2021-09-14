@@ -1,12 +1,21 @@
+import 'dart:io';
+
 import 'package:emoji_alert/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_participants_lottery/lottery_logic.dart' as lottery;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'src/lottery_logic.dart' as lottery;
 
-void main() => runApp(MyApp());
+void main() async {
+  await dotenv.load(mergeWith: {
+    'CURRENT_ENVIRONMENT': '${Platform.environment}',
+  });
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
