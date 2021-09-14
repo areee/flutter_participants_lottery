@@ -32,6 +32,7 @@ dependencies:
   shared_preferences: ^2.0.6
   emoji_alert:  1.1.0
   audioplayers: ^0.19.1
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +53,7 @@ flutter:
   assets:
     - assets/aika_loppui.mp3
     - assets/arvonta_kaynnissa.mp3
+    - .env
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
