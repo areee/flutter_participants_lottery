@@ -8,12 +8,11 @@ import 'package:emoji_alert/emoji_alert.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'src/lottery_logic.dart' as lottery;
+import 'src/string_helper.dart' as stringHelper;
 import 'src/avatar_widget.dart';
 
 void main() async {
-  await dotenv.load(mergeWith: {
-    'CURRENT_ENVIRONMENT': '${Platform.environment}',
-  });
+  await dotenv.load();
   runApp(MyApp());
 }
 
@@ -54,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _textEditingController = TextEditingController();
   String _participantNames = '';
   String _valueText = '';
+
+  var _participantNamesInList = <String>[];
 
   @override
   void initState() {
@@ -106,7 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNames = lottery.runLottery(_participantNames);
+      _participantNamesInList =
+          lottery.runLotteryListReturnList(_participantNamesInList);
+      // _participantNames = lottery.runLottery(_participantNames);
       // prefs.setString('participantNames', _participantNames);
     });
   }
@@ -118,12 +121,13 @@ class _MyHomePageState extends State<MyHomePage> {
           return AlertDialog(
             title: Text('Syötä nimet'),
             content: TextField(
-              onChanged: (value) {
-                setState(() {
-                  _valueText = value;
-                });
-              },
-              controller: _textEditingController..text = _participantNames,
+              // onChanged: (value) {
+              //   setState(() {
+              //     _valueText = value;
+              //   });
+              // },
+              // controller: _textEditingController..text = _participantNames,
+              controller: _textEditingController,
               decoration:
                   InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
             ),
@@ -139,17 +143,24 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton(
                 child: Text('OK'),
                 onPressed: () async {
-                  // final prefs = await SharedPreferences.getInstance();
-                  setState(() {
-                    _participantNames = _valueText;
-                    // prefs.setString('participantNames', _participantNames);
-                    Navigator.pop(context);
-                  });
+                  _getParticipantNames(context);
                 },
               ),
             ],
           );
         });
+  }
+
+  Future<void> _getParticipantNames(BuildContext context) async {
+    // final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _participantNamesInList = stringHelper
+          .commaSeparatedStringIntoList(_textEditingController.text);
+
+      // _participantNames = _valueText;
+      // prefs.setString('participantNames', _participantNames);
+      Navigator.pop(context);
+    });
   }
 
   @override
@@ -227,10 +238,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                '$_participantNames',
-                style: Theme.of(context).textTheme.headline6,
+              child: new ListView(
+                scrollDirection: Axis.horizontal,
+                children: _participantNamesInList
+                    .map((name) => AvatarWidget(participantName: name))
+                    .toList(),
               ),
+
+              // child: Text(
+              //   '$_participantNames',
+              //   style: Theme.of(context).textTheme.headline6,
+              // ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
