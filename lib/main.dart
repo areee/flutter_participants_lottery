@@ -8,12 +8,12 @@ import 'package:emoji_alert/emoji_alert.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'src/lottery_logic.dart' as lottery;
+import 'src/avatar_widget.dart';
 
 void main() async {
   await dotenv.load(mergeWith: {
     'CURRENT_ENVIRONMENT': '${Platform.environment}',
   });
-
   runApp(MyApp());
 }
 
@@ -73,11 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// Load data in SharedPreferences on start
   void _loadData() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _participantNames = (prefs.getString('participantNames') ?? '');
-      _valueText = (prefs.getString('participantNames') ?? '');
-    });
+    // final prefs = await SharedPreferences.getInstance();
+    // setState(() {
+    //   _participantNames = (prefs.getString('participantNames') ?? '');
+    //   _valueText = (prefs.getString('participantNames') ?? '');
+    // });
   }
 
   /// When the time's up, show an emoji alert
@@ -104,10 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void _runLottery() async {
     _playLotterySound();
 
-    final prefs = await SharedPreferences.getInstance();
+    // final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNames = lottery.runLottery(_participantNames);
-      prefs.setString('participantNames', _participantNames);
+      // prefs.setString('participantNames', _participantNames);
     });
   }
 
@@ -139,10 +139,10 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton(
                 child: Text('OK'),
                 onPressed: () async {
-                  final prefs = await SharedPreferences.getInstance();
+                  // final prefs = await SharedPreferences.getInstance();
                   setState(() {
                     _participantNames = _valueText;
-                    prefs.setString('participantNames', _participantNames);
+                    // prefs.setString('participantNames', _participantNames);
                     Navigator.pop(context);
                   });
                 },
