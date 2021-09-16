@@ -236,35 +236,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            Container(
+              height: 80,
               child: new ListView(
+                shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 children: _participantNamesInList
                     .map((name) => AvatarWidget(participantName: name))
                     .toList(),
               ),
-
-              // child: Text(
-              //   '$_participantNames',
-              //   style: Theme.of(context).textTheme.headline6,
-              // ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  _runLottery();
-                },
-                icon: const Icon(
-                  Icons.shuffle,
-                  size: 18,
-                ),
-                label: Text("Arvo"),
-                style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor),
+            ElevatedButton.icon(
+              onPressed: () {
+                _runLottery();
+              },
+              icon: const Icon(
+                Icons.shuffle,
+                size: 18,
               ),
-            )
+              label: Text("Arvo"),
+              style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor),
+            ),
           ],
         ),
       ),

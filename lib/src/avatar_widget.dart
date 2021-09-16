@@ -10,6 +10,7 @@ class AvatarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 100,
       child: Column(
         children: [
           Image.network(
