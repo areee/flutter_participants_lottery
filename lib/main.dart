@@ -51,8 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
   CountDownController _countDownController = CountDownController();
   int _duration = 90;
   TextEditingController _textEditingController = TextEditingController();
-  String _participantNames = '';
-  String _valueText = '';
+
+  // String _participantNames = '';
+  // String _valueText = '';
 
   var _participantNamesInList = <String>[];
 
@@ -127,7 +128,9 @@ class _MyHomePageState extends State<MyHomePage> {
               //   });
               // },
               // controller: _textEditingController..text = _participantNames,
-              controller: _textEditingController,
+              controller: _textEditingController
+                ..text = stringHelper
+                    .listIntoCommaSeparatedString(_participantNamesInList),
               decoration:
                   InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
             ),

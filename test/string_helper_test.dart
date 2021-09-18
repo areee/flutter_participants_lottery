@@ -16,4 +16,11 @@ void main() {
 
     expect(stringHelper.commaSeparatedStringIntoList(stringWithCommas), list);
   });
+
+  test("String list comes out as a string with commas", () {
+    const stringWithCommas = 'a, b, c, d';
+    const list = ['a', 'b', 'c', 'd'];
+
+    expect(stringHelper.listIntoCommaSeparatedString(list), stringWithCommas);
+  });
 }
