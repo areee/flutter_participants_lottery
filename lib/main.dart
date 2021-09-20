@@ -4,11 +4,17 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_participants_lottery/lottery_logic.dart' as lottery;
+import 'src/lottery_logic.dart' as lottery;
+import 'src/string_helper.dart' as stringHelper;
+import 'src/avatar_widget.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData(
@@ -30,21 +36,19 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  AudioCache audioCache = AudioCache();
-  CountDownController _countDownController = CountDownController();
-  int _duration = 90;
-  TextEditingController _textEditingController = TextEditingController();
-  String _participantNames = '';
-  String _valueText = '';
+  var audioCache = AudioCache();
+  var _countDownController = CountDownController();
+  var _duration = 90;
+  var _textEditingController = TextEditingController();
+  var _participantNamesInList = <String>[];
 
   @override
   void initState() {
@@ -65,9 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
   /// Load data in SharedPreferences on start
   void _loadData() async {
     final prefs = await SharedPreferences.getInstance();
+    var oldWay = prefs.getString('participantNames') ?? '';
+    var newWay = prefs.getStringList('participantNamesInList') ?? <String>[];
+
     setState(() {
-      _participantNames = (prefs.getString('participantNames') ?? '');
-      _valueText = (prefs.getString('participantNames') ?? '');
+      // If the user's local storage has already some old comma-separated string names
+      if (oldWay.isNotEmpty && newWay.isEmpty) {
+        _participantNamesInList =
+            stringHelper.commaSeparatedStringIntoList(oldWay);
+        prefs.setStringList('participantNamesInList', _participantNamesInList);
+        prefs.setString('participantNames', '');
+      } else {
+        _participantNamesInList = newWay;
+      }
     });
   }
 
@@ -97,8 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNames = lottery.runLottery(_participantNames);
-      prefs.setString('participantNames', _participantNames);
+      _participantNamesInList =
+          lottery.runLotteryListReturnList(_participantNamesInList);
+      prefs.setStringList('participantNamesInList', _participantNamesInList);
     });
   }
 
@@ -109,12 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
           return AlertDialog(
             title: Text('Syötä nimet'),
             content: TextField(
-              onChanged: (value) {
-                setState(() {
-                  _valueText = value;
-                });
-              },
-              controller: _textEditingController..text = _participantNames,
+              controller: _textEditingController
+                ..text = stringHelper
+                    .listIntoCommaSeparatedString(_participantNamesInList),
               decoration:
                   InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
             ),
@@ -130,17 +142,22 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton(
                 child: Text('OK'),
                 onPressed: () async {
-                  final prefs = await SharedPreferences.getInstance();
-                  setState(() {
-                    _participantNames = _valueText;
-                    prefs.setString('participantNames', _participantNames);
-                    Navigator.pop(context);
-                  });
+                  _setParticipantNames(context);
                 },
               ),
             ],
           );
         });
+  }
+
+  Future<void> _setParticipantNames(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _participantNamesInList = stringHelper
+          .commaSeparatedStringIntoList(_textEditingController.text);
+      prefs.setStringList('participantNamesInList', _participantNamesInList);
+      Navigator.pop(context);
+    });
   }
 
   @override
@@ -216,28 +233,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                '$_participantNames',
-                style: Theme.of(context).textTheme.headline6,
-              ),
+            Container(
+              height: 70,
+              child: _participantNamesInList.length > 0
+                  ? new ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: _participantNamesInList
+                          .map((name) => AvatarWidget(participantName: name))
+                          .toList(),
+                    )
+                  : Text(
+                      'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
+                      style: TextStyle(color: Colors.grey),
+                    ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  _runLottery();
-                },
-                icon: const Icon(
-                  Icons.shuffle,
-                  size: 18,
-                ),
-                label: Text("Arvo"),
-                style: ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor),
+            ElevatedButton.icon(
+              onPressed: () {
+                _runLottery();
+              },
+              icon: const Icon(
+                Icons.shuffle,
+                size: 18,
               ),
-            )
+              label: Text("Arvo"),
+              style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor),
+            ),
           ],
         ),
       ),
