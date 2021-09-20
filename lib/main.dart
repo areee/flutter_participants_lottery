@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton(
                 child: Text('OK'),
                 onPressed: () async {
-                  _getParticipantNames(context);
+                  _setParticipantNames(context);
                 },
               ),
             ],
@@ -150,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  Future<void> _getParticipantNames(BuildContext context) async {
+  Future<void> _setParticipantNames(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNamesInList = stringHelper
