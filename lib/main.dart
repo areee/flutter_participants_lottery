@@ -6,17 +6,17 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'src/lottery_logic.dart' as lottery;
 import 'src/string_helper.dart' as stringHelper;
 import 'src/avatar_widget.dart';
 
-void main() async {
-  await dotenv.load();
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData(
@@ -38,12 +38,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {

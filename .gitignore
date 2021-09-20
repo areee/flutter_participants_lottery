@@ -47,3 +47,4 @@ app.*.map.json
 
 # Ignore the .env file
 *.env
+/lib/env/env.g.dart
