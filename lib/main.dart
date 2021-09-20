@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:emoji_alert/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -46,14 +44,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  AudioCache audioCache = AudioCache();
-  CountDownController _countDownController = CountDownController();
-  int _duration = 90;
-  TextEditingController _textEditingController = TextEditingController();
-
-  // String _participantNames = '';
-  // String _valueText = '';
-
+  var audioCache = AudioCache();
+  var _countDownController = CountDownController();
+  var _duration = 90;
+  var _textEditingController = TextEditingController();
   var _participantNamesInList = <String>[];
 
   @override
@@ -74,11 +68,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// Load data in SharedPreferences on start
   void _loadData() async {
-    // final prefs = await SharedPreferences.getInstance();
-    // setState(() {
-    //   _participantNames = (prefs.getString('participantNames') ?? '');
-    //   _valueText = (prefs.getString('participantNames') ?? '');
-    // });
+    final prefs = await SharedPreferences.getInstance();
+    var oldWay = prefs.getString('participantNames') ?? '';
+    var newWay = prefs.getStringList('participantNamesInList') ?? <String>[];
+
+    setState(() {
+      // If the user's local storage has already some old comma-separated string names
+      if (oldWay.isNotEmpty && newWay.isEmpty) {
+        _participantNamesInList =
+            stringHelper.commaSeparatedStringIntoList(oldWay);
+        prefs.setStringList('participantNamesInList', _participantNamesInList);
+        prefs.setString('participantNames', '');
+      } else {
+        _participantNamesInList = newWay;
+      }
+    });
   }
 
   /// When the time's up, show an emoji alert
@@ -105,12 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void _runLottery() async {
     _playLotterySound();
 
-    // final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNamesInList =
           lottery.runLotteryListReturnList(_participantNamesInList);
-      // _participantNames = lottery.runLottery(_participantNames);
-      // prefs.setString('participantNames', _participantNames);
+      prefs.setStringList('participantNamesInList', _participantNamesInList);
     });
   }
 
@@ -121,12 +124,6 @@ class _MyHomePageState extends State<MyHomePage> {
           return AlertDialog(
             title: Text('Syötä nimet'),
             content: TextField(
-              // onChanged: (value) {
-              //   setState(() {
-              //     _valueText = value;
-              //   });
-              // },
-              // controller: _textEditingController..text = _participantNames,
               controller: _textEditingController
                 ..text = stringHelper
                     .listIntoCommaSeparatedString(_participantNamesInList),
@@ -154,13 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> _getParticipantNames(BuildContext context) async {
-    // final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNamesInList = stringHelper
           .commaSeparatedStringIntoList(_textEditingController.text);
-
-      // _participantNames = _valueText;
-      // prefs.setString('participantNames', _participantNames);
+      prefs.setStringList('participantNamesInList', _participantNamesInList);
       Navigator.pop(context);
     });
   }
@@ -239,14 +234,19 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Container(
-              height: 80,
-              child: new ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: _participantNamesInList
-                    .map((name) => AvatarWidget(participantName: name))
-                    .toList(),
-              ),
+              height: 70,
+              child: _participantNamesInList.length > 0
+                  ? new ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: _participantNamesInList
+                          .map((name) => AvatarWidget(participantName: name))
+                          .toList(),
+                    )
+                  : Text(
+                      'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
+                      style: TextStyle(color: Colors.grey),
+                    ),
             ),
             ElevatedButton.icon(
               onPressed: () {
