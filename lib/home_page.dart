@@ -275,10 +275,6 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             width: 10,
           ),
-          CountdownButton(
-            "Aloita alusta",
-            () => _countDownController.restart(duration: _duration),
-          )
         ],
       ),
     );
