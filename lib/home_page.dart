@@ -64,18 +64,20 @@ class _HomePageState extends State<HomePage> {
   void _timeIsUp() {
     // _playTimeIsUpSound(); // Do not use for now (to support also Windows desktop)
 
+    print('Time\'s Up');
+
     EmojiAlert(
         emojiType: EMOJI_TYPE.WINK,
         background: Theme.of(context).colorScheme.secondary,
         enableMainButton: true,
         mainButtonText: Text('Sulje'),
-        mainButtonColor: Theme.of(context).primaryColor,
+        mainButtonColor: Theme.of(context).colorScheme.primary,
         onMainButtonPressed: () {
           Navigator.pop(context);
         },
         description: Column(
           children: [
-            Text('Aika loppui', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text('Aika loppui', style: Theme.of(context).textTheme.headline2),
           ],
         )).displayAlert(context);
   }
@@ -97,13 +99,17 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Syötä nimet'),
+            title: Text(
+              'Syötä nimet',
+              style: Theme.of(context).textTheme.headline2,
+            ),
             content: TextField(
               controller: _textEditingController
                 ..text = stringHelper
                     .listIntoCommaSeparatedString(_participantNamesInList),
               decoration:
                   InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             actions: <Widget>[
               TextButton(
@@ -145,8 +151,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text(widget.title),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(
+          widget.title,
+          style: Theme.of(context).textTheme.headline1,
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -165,7 +174,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Puheaika',
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.headline1,
               ),
             ),
             Padding(
@@ -204,8 +213,8 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                'Järjestys:',
-                style: Theme.of(context).textTheme.headline4,
+                'Järjestys',
+                style: Theme.of(context).textTheme.headline1,
               ),
             ),
             Container(
@@ -233,7 +242,7 @@ class _HomePageState extends State<HomePage> {
               ),
               label: Text("Arvo"),
               style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor),
+                  primary: Theme.of(context).colorScheme.primary),
             ),
           ],
         ),
