@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart'; // Do not use for now (to support also Windows desktop)
 import 'src/lottery_logic.dart' as lottery;
 import 'src/string_helper.dart' as stringHelper;
 import 'src/avatar_widget.dart';
@@ -44,7 +44,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var audioCache = AudioCache();
+  // var audioCache = AudioCache(); // Do not use for now (to support also Windows desktop)
   var _countDownController = CountDownController();
   var _duration = 90;
   var _textEditingController = TextEditingController();
@@ -57,14 +57,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   /// Play a self-made lottery sound (made by Arttu Ylhävuori)
-  void _playLotterySound() {
-    audioCache.play('arvonta_kaynnissa.mp3', mode: PlayerMode.LOW_LATENCY);
-  }
+  // void _playLotterySound() {
+  // Do not use for now (to support also Windows desktop)
+  //   audioCache.play('arvonta_kaynnissa.mp3', mode: PlayerMode.LOW_LATENCY);
+  // }
 
   /// Play a self-made time's up sound (made by Arttu Ylhävuori)
-  void _playTimeIsUpSound() {
-    audioCache.play('aika_loppui.mp3', mode: PlayerMode.LOW_LATENCY);
-  }
+  // void _playTimeIsUpSound() {
+  // Do not use for now (to support also Windows desktop)
+  //   audioCache.play('aika_loppui.mp3', mode: PlayerMode.LOW_LATENCY);
+  // }
 
   /// Load data in SharedPreferences on start
   void _loadData() async {
@@ -87,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// When the time's up, show an emoji alert
   void _timeIsUp() {
-    _playTimeIsUpSound();
+    // _playTimeIsUpSound(); // Do not use for now (to support also Windows desktop)
 
     EmojiAlert(
         emojiType: EMOJI_TYPE.WINK,
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   /// Run lottery when the button is clicked
   void _runLottery() async {
-    _playLotterySound();
+    // _playLotterySound(); // Do not use for now (to support also Windows desktop)
 
     final prefs = await SharedPreferences.getInstance();
     setState(() {

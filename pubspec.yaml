@@ -15,7 +15,7 @@ dependencies:
   circular_countdown_timer: ^0.2.0
   shared_preferences: ^2.0.8
   emoji_alert:  1.1.0
-  audioplayers: ^0.19.1
+  # audioplayers: ^0.19.1 # Do not use for now (to support also Windows desktop)
   envify: any
 
 dev_dependencies:
@@ -27,6 +27,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/aika_loppui.mp3
-    - assets/arvonta_kaynnissa.mp3
+  # Do not use for now (to support also Windows desktop)
+  # assets:
+  #   - assets/aika_loppui.mp3
+  #   - assets/arvonta_kaynnissa.mp3
