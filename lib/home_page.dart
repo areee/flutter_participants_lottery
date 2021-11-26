@@ -4,6 +4,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 // import 'package:audioplayers/audioplayers.dart'; // Do not use for now (to support also Windows desktop)
+import 'src/countdown_button.dart';
 import 'src/lottery_logic.dart' as lottery;
 import 'src/string_helper.dart' as stringHelper;
 import 'src/avatar_widget.dart';
@@ -253,41 +254,33 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             width: 30,
           ),
-          _button(
-              title: "Aloita", onPressed: () => _countDownController.start()),
+          CountdownButton(
+            "Aloita",
+            () => _countDownController.start(),
+          ),
           SizedBox(
             width: 10,
           ),
-          _button(
-              title: "Tauko", onPressed: () => _countDownController.pause()),
+          CountdownButton(
+            "Tauko",
+            () => _countDownController.pause(),
+          ),
           SizedBox(
             width: 10,
           ),
-          _button(
-              title: "Jatka", onPressed: () => _countDownController.resume()),
+          CountdownButton(
+            "Jatka",
+            () => _countDownController.resume(),
+          ),
           SizedBox(
             width: 10,
           ),
-          _button(
-              title: "Aloita alusta",
-              onPressed: () =>
-                  _countDownController.restart(duration: _duration))
+          CountdownButton(
+            "Aloita alusta",
+            () => _countDownController.restart(duration: _duration),
+          )
         ],
       ),
     );
-  }
-
-  _button({required String title, VoidCallback? onPressed}) {
-    return Expanded(
-        child: ElevatedButton(
-            child: Text(
-              title,
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: onPressed,
-            style: ElevatedButton.styleFrom(
-              primary: Colors.green,
-              onPrimary: Colors.white,
-            )));
   }
 }
