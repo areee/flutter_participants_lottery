@@ -17,6 +17,7 @@ dependencies:
   emoji_alert:  1.1.0
   # audioplayers: ^0.19.1 # Do not use for now (to support also Windows desktop)
   envify: any
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
