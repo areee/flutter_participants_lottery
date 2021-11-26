@@ -3,11 +3,11 @@ import 'home_page.dart';
 import 'fpl_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FplApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class FplApp extends StatelessWidget {
+  const FplApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
