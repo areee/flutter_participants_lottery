@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
         },
         description: Column(
           children: [
-            Text('Aika loppui', style: Theme.of(context).textTheme.headline2),
+            Text('Aika loppui', style: FplTheme.darkTextTheme.headline2),
           ],
         )).displayAlert(context);
   }
