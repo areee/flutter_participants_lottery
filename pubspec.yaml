@@ -11,13 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.2
   circular_countdown_timer: ^0.2.0
-  shared_preferences: ^2.0.12
+  shared_preferences: ^2.0.8
   emoji_alert:  1.1.0
   # audioplayers: ^0.19.1 # Do not use for now (to support also Windows desktop)
   envify: any
-  google_fonts: ^2.2.0
+  google_fonts: ^2.1.0
 
 dev_dependencies:
   flutter_test:
