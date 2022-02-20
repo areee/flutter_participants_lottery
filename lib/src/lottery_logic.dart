@@ -10,7 +10,7 @@ String runLotteryList(List<String> names) {
 
   for (var i = 0; i < reOrderedList.length; i++) {
     if (i == 0) {
-      returnedString = '${names[reOrderedList[i]]}';
+      returnedString = names[reOrderedList[i]];
     } else {
       returnedString = '$returnedString, ${names[reOrderedList[i]]}';
     }
