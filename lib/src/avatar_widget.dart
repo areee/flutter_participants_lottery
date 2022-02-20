@@ -9,7 +9,7 @@ class AvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100,
       child: Column(
         children: [
@@ -17,7 +17,7 @@ class AvatarWidget extends StatelessWidget {
             'https://api.multiavatar.com/$participantName.png?apikey=${Env.multiavatar}',
             height: 50,
           ),
-          Text('$participantName')
+          Text(participantName)
         ],
       ),
     );

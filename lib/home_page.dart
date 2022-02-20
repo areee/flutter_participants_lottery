@@ -1,4 +1,5 @@
 import 'package:emoji_alert/arrays.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +8,7 @@ import 'package:emoji_alert/emoji_alert.dart';
 import 'fpl_theme.dart';
 import 'src/countdown_button.dart';
 import 'src/lottery_logic.dart' as lottery;
-import 'src/string_helper.dart' as stringHelper;
+import 'src/string_helper.dart' as string_helper;
 import 'src/avatar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,9 +21,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // var audioCache = AudioCache(); // Do not use for now (to support also Windows desktop)
-  var _countDownController = CountDownController();
-  var _duration = 90;
-  var _textEditingController = TextEditingController();
+  final _countDownController = CountDownController();
+  final _duration = 90;
+  final _textEditingController = TextEditingController();
   var _participantNamesInList = <String>[];
 
   @override
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
       // If the user's local storage has already some old comma-separated string names
       if (oldWay.isNotEmpty && newWay.isEmpty) {
         _participantNamesInList =
-            stringHelper.commaSeparatedStringIntoList(oldWay);
+            string_helper.commaSeparatedStringIntoList(oldWay);
         prefs.setStringList('participantNamesInList', _participantNamesInList);
         prefs.setString('participantNames', '');
       } else {
@@ -66,13 +67,15 @@ class _HomePageState extends State<HomePage> {
   void _timeIsUp() {
     // _playTimeIsUpSound(); // Do not use for now (to support also Windows desktop)
 
-    print('Time\'s Up');
+    if (kDebugMode) {
+      print('Time\'s Up');
+    }
 
     EmojiAlert(
         emojiType: EMOJI_TYPE.WINK,
         background: Theme.of(context).colorScheme.secondary,
         enableMainButton: true,
-        mainButtonText: Text('Sulje'),
+        mainButtonText: const Text('Sulje'),
         mainButtonColor: Theme.of(context).colorScheme.primary,
         onMainButtonPressed: () {
           Navigator.pop(context);
@@ -107,15 +110,15 @@ class _HomePageState extends State<HomePage> {
             ),
             content: TextField(
               controller: _textEditingController
-                ..text = stringHelper
+                ..text = string_helper
                     .listIntoCommaSeparatedString(_participantNamesInList),
-              decoration:
-                  InputDecoration(hintText: "Syötä nimet, erottele pilkuilla"),
+              decoration: const InputDecoration(
+                  hintText: "Syötä nimet, erottele pilkuilla"),
               style: Theme.of(context).textTheme.bodyText1,
             ),
             actions: <Widget>[
               TextButton(
-                child: Text('Peruuta'),
+                child: const Text('Peruuta'),
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
@@ -123,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () async {
                   _setParticipantNames(context);
                 },
@@ -136,7 +139,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> _setParticipantNames(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNamesInList = stringHelper
+      _participantNamesInList = string_helper
           .commaSeparatedStringIntoList(_textEditingController.text);
       prefs.setStringList('participantNamesInList', _participantNamesInList);
       Navigator.pop(context);
@@ -195,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundGradient: null,
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                     fontSize: 33.0,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
@@ -205,7 +208,9 @@ class _HomePageState extends State<HomePage> {
                 isTimerTextShown: true,
                 autoStart: false,
                 onStart: () {
-                  print('Countdown Started');
+                  if (kDebugMode) {
+                    print('Countdown Started');
+                  }
                 },
                 onComplete: () {
                   _timeIsUp();
@@ -219,17 +224,17 @@ class _HomePageState extends State<HomePage> {
                 style: Theme.of(context).textTheme.headline1,
               ),
             ),
-            Container(
+            SizedBox(
               height: 70,
-              child: _participantNamesInList.length > 0
-                  ? new ListView(
+              child: _participantNamesInList.isNotEmpty
+                  ? ListView(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       children: _participantNamesInList
                           .map((name) => AvatarWidget(participantName: name))
                           .toList(),
                     )
-                  : Text(
+                  : const Text(
                       'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -242,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                 Icons.shuffle,
                 size: 18,
               ),
-              label: Text("Arvo"),
+              label: const Text("Arvo"),
               style: ElevatedButton.styleFrom(
                   primary: Theme.of(context).colorScheme.primary),
             ),
@@ -252,28 +257,28 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             width: 30,
           ),
           CountdownButton(
             "Aloita",
             () => _countDownController.start(),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           CountdownButton(
             "Tauko",
             () => _countDownController.pause(),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           CountdownButton(
             "Jatka",
             () => _countDownController.resume(),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
         ],
