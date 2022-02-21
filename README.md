@@ -1,3 +1,6 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/areee/flutter_participants_lottery)
+![GitHub](https://img.shields.io/github/license/areee/flutter_participants_lottery)
+
 # flutter_participants_lottery
 
 A participants lottery app
