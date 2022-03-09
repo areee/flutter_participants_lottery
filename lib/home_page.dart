@@ -5,6 +5,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 // import 'package:audioplayers/audioplayers.dart'; // Do not use for now (to support also Windows desktop)
+import 'components/custom_app_bar.dart';
 import 'src/countdown_button.dart';
 import 'src/lottery_logic.dart' as lottery;
 import 'src/string_helper.dart' as string_helper;
@@ -153,31 +154,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> actions = [
+      IconButton(
+        onPressed: () {
+          _displayTextInputDialog(context);
+        },
+        icon: const Icon(Icons.settings),
+        tooltip: 'Asetukset',
+      )
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text(
-          widget.title,
-        ),
-        centerTitle: true,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              repeat: ImageRepeat.repeatX,
-              image: AssetImage('assets/images/lumihiutale.png'),
-            ),
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              _displayTextInputDialog(context);
-            },
-            icon: const Icon(Icons.settings),
-            tooltip: 'Asetukset',
-          )
-        ],
-      ),
+      appBar: customAppBar(context, Text(widget.title), actions),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -196,12 +184,12 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height / 2,
                 duration: _duration,
                 initialDuration: 0,
-                fillColor: Colors.blueAccent[700]!,
+                fillColor: Colors.yellowAccent[700]!,
                 ringColor: Colors.grey[300]!,
                 controller: _countDownController,
                 ringGradient: null,
                 fillGradient: null,
-                backgroundColor: Colors.blue,
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 backgroundGradient: null,
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
