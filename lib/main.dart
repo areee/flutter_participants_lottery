@@ -16,7 +16,7 @@ class FplApp extends StatelessWidget {
       title: 'Osallistujien arvonta',
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         textTheme: GoogleFonts.fredokaOneTextTheme(
           Theme.of(context).textTheme.apply(
                 bodyColor: Colors.white,
@@ -26,7 +26,7 @@ class FplApp extends StatelessWidget {
       ),
       theme: ThemeData(
         brightness: Brightness.light,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         textTheme: GoogleFonts.fredokaOneTextTheme(
           Theme.of(context).textTheme,
         ),
