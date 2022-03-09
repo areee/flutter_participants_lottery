@@ -159,6 +159,15 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           widget.title,
         ),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              repeat: ImageRepeat.repeatX,
+              image: AssetImage('assets/images/lumihiutale.png'),
+            ),
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {

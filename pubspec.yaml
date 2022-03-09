@@ -28,6 +28,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - LICENSE.md
+    - README.md
+    - assets/images/lumihiutale.png
 
   # Do not use for now (to support also Windows desktop)
   # assets:
