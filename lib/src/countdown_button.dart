@@ -17,7 +17,7 @@ class CountdownButton extends StatelessWidget {
             ),
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              primary: Colors.green,
+              primary: Colors.blue,
               onPrimary: Colors.white,
             )));
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// TODO: Update this class
+
 class FplTheme {
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.pacifico(
