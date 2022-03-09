@@ -5,7 +5,6 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 // import 'package:audioplayers/audioplayers.dart'; // Do not use for now (to support also Windows desktop)
-import 'fpl_theme.dart';
 import 'src/countdown_button.dart';
 import 'src/lottery_logic.dart' as lottery;
 import 'src/string_helper.dart' as string_helper;
@@ -81,8 +80,8 @@ class _HomePageState extends State<HomePage> {
           Navigator.pop(context);
         },
         description: Column(
-          children: [
-            Text('Aika loppui', style: FplTheme.darkTextTheme.headline2),
+          children: const [
+            Text('Aika loppui', style: TextStyle(color: Colors.white)),
           ],
         )).displayAlert(context);
   }
@@ -106,7 +105,7 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             title: Text(
               'Syötä nimet',
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.headline5,
             ),
             content: TextField(
               controller: _textEditingController
@@ -159,7 +158,15 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           widget.title,
-          style: FplTheme.darkTextTheme.headline1,
+        ),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              repeat: ImageRepeat.repeatX,
+              image: AssetImage('assets/images/lumihiutale.png'),
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -179,7 +186,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Puheaika',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headline4,
               ),
             ),
             Padding(
@@ -189,12 +196,12 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height / 2,
                 duration: _duration,
                 initialDuration: 0,
-                fillColor: Colors.greenAccent[700]!,
+                fillColor: Colors.blueAccent[700]!,
                 ringColor: Colors.grey[300]!,
                 controller: _countDownController,
                 ringGradient: null,
                 fillGradient: null,
-                backgroundColor: Colors.green[700],
+                backgroundColor: Colors.blue,
                 backgroundGradient: null,
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
@@ -202,7 +209,7 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 33.0,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
-                textFormat: CountdownTextFormat.S,
+                textFormat: CountdownTextFormat.MM_SS,
                 isReverse: true,
                 isReverseAnimation: true,
                 isTimerTextShown: true,
@@ -221,7 +228,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Järjestys',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headline4,
               ),
             ),
             SizedBox(
