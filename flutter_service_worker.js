@@ -3,10 +3,10 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "version.json": "98c90e3649a9225d62e892c9399e37e2",
-"index.html": "0b4237fb0d054497f36c5ab401ba1842",
-"/": "0b4237fb0d054497f36c5ab401ba1842",
-"main.dart.js": "13751cc3d0e1096ef4c30019f499f63d",
+  "version.json": "eb09b1aeebfb585f9d92723a88108e8a",
+"index.html": "d7799efb3ce5326874450b197c546c57",
+"/": "d7799efb3ce5326874450b197c546c57",
+"main.dart.js": "4ee82a29632d1a0e5b4034f6ae4a85ae",
 "fpl_favicon.png": "99bf7bede4a53ac7966f7a442d399302",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "fpl_favicon_round.png": "df92b0861898eda181b1817789e331ae",
@@ -18,7 +18,7 @@ const RESOURCES = {
 "icons/Fpl_icon_192.png": "edf7a82c5adb9758610e04261b546bf2",
 "manifest.json": "df85031e7fe9610d3c45ed8f3c1fc2a5",
 "assets/LICENSE.md": "1ebbd3e34237af26da5dc08a4e440464",
-"assets/AssetManifest.json": "85e07c901cf7573a2e9be478e2b3a694",
+"assets/AssetManifest.json": "69af51c2b8481cabd39d4b0652be226f",
 "assets/NOTICES": "aee743d90bc8aa98c43f101597fc29f5",
 "assets/README.md": "5f41e70e0b4c3a3cf98b9b76c6d490fc",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
@@ -35,6 +35,7 @@ const RESOURCES = {
 "assets/packages/emoji_alert/assets/images/laughing.png": "d94e33b50d827fd87f6b6de33abf3f59",
 "assets/packages/emoji_alert/assets/images/smile.png": "02543668b6881fcae92fd9cbc78f70de",
 "assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81",
+"assets/assets/images/kukkia_ruohikolla.png": "1e3486502c99b0119e7dc27656e7b4fa",
 "assets/assets/images/lumihiutale.png": "eede643ba5d1d06606a95256e9284ab6"
 };
 
