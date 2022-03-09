@@ -32,6 +32,7 @@ flutter:
     - LICENSE.md
     - README.md
     - assets/images/lumihiutale.png
+    - assets/images/kukkia_ruohikolla.png
 
   # Do not use for now (to support also Windows desktop)
   # assets:
