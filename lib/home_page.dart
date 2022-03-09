@@ -195,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                 strokeCap: StrokeCap.round,
                 textStyle: const TextStyle(
                     fontSize: 33.0,
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold),
                 textFormat: CountdownTextFormat.MM_SS,
                 isReverse: true,

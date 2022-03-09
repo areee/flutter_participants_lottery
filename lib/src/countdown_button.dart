@@ -13,7 +13,7 @@ class CountdownButton extends StatelessWidget {
         child: ElevatedButton(
             child: Text(
               title,
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.white),
             ),
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
