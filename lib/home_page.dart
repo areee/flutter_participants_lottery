@@ -165,7 +165,7 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
-      appBar: customAppBar(context, Text(widget.title), actions),
+      appBar: customAppBar(context, widget.title, actions),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
