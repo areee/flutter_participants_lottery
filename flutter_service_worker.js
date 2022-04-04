@@ -3,10 +3,10 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "version.json": "eb09b1aeebfb585f9d92723a88108e8a",
-"index.html": "d7799efb3ce5326874450b197c546c57",
-"/": "d7799efb3ce5326874450b197c546c57",
-"main.dart.js": "4ee82a29632d1a0e5b4034f6ae4a85ae",
+  "version.json": "3bffe91b75c21dfbc6adbcde4af05800",
+"index.html": "36bd9132b3820315832b2897b19783af",
+"/": "36bd9132b3820315832b2897b19783af",
+"main.dart.js": "daf85247d485a183c85e7ea2c21d0b43",
 "fpl_favicon.png": "99bf7bede4a53ac7966f7a442d399302",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "fpl_favicon_round.png": "df92b0861898eda181b1817789e331ae",
@@ -36,7 +36,11 @@ const RESOURCES = {
 "assets/packages/emoji_alert/assets/images/smile.png": "02543668b6881fcae92fd9cbc78f70de",
 "assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81",
 "assets/assets/images/kukkia_ruohikolla.png": "1e3486502c99b0119e7dc27656e7b4fa",
-"assets/assets/images/lumihiutale.png": "eede643ba5d1d06606a95256e9284ab6"
+"assets/assets/images/lumihiutale.png": "eede643ba5d1d06606a95256e9284ab6",
+"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
+"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
+"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
+"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
 };
 
 // The application shell files that are downloaded before a service worker can
