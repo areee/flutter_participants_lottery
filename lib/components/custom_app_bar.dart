@@ -9,7 +9,7 @@ PreferredSizeWidget customAppBar(
       title,
       style: TextStyle(
         background: Paint()
-          ..color = Colors.green.withOpacity(0.5)
+          ..color = Theme.of(context).colorScheme.primary.withOpacity(0.5)
           ..strokeWidth = 17
           ..strokeJoin = StrokeJoin.round
           ..strokeCap = StrokeCap.round

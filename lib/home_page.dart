@@ -184,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height / 2,
                 duration: _duration,
                 initialDuration: 0,
-                fillColor: Colors.yellowAccent[700]!,
+                fillColor: Theme.of(context).colorScheme.secondary,
                 ringColor: Colors.grey[300]!,
                 controller: _countDownController,
                 ringGradient: null,
