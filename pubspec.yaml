@@ -17,7 +17,7 @@ dependencies:
   emoji_alert:  ^1.1.0
   # audioplayers: ^0.19.1 # Do not use for now (to support also Windows desktop)
   envify: any
-  google_fonts: ^2.3.2
+  google_fonts: ^3.0.1
   get: ^4.6.5
 
 dev_dependencies:
