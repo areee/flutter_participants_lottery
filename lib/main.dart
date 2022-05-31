@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'fpl_themes.dart';
 import 'home_page.dart';
 
 void main() {
@@ -14,23 +14,8 @@ class FplApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.green,
-        textTheme: GoogleFonts.fredokaOneTextTheme(
-          Theme.of(context).textTheme.apply(
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
-              ),
-        ),
-      ),
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.green,
-        textTheme: GoogleFonts.fredokaOneTextTheme(
-          Theme.of(context).textTheme,
-        ),
-      ),
+      darkTheme: darkFplTheme(context),
+      theme: lightFplTheme(context),
       home: const HomePage(title: 'Osallistujien arvonta'),
     );
   }
