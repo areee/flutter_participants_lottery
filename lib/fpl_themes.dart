@@ -47,7 +47,7 @@ ThemeData _lightSummer2022Theme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.amber, brightness: Brightness.light)
-        .copyWith(secondary: Colors.indigoAccent[700]),
+        .copyWith(secondary: Colors.orange[700]),
     textTheme: GoogleFonts.fredokaOneTextTheme(
       Theme.of(context).textTheme,
     ),
@@ -59,7 +59,7 @@ ThemeData _darkSummer2022Theme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.amber, brightness: Brightness.dark)
-        .copyWith(secondary: Colors.indigoAccent[700]),
+        .copyWith(secondary: Colors.orange[700]),
     textTheme: GoogleFonts.fredokaOneTextTheme(
       Theme.of(context).textTheme.apply(
             bodyColor: Colors.white,
