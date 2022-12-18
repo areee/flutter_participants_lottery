@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> {
               ),
               label: const Text("Arvo"),
               style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).colorScheme.primary),
+                  backgroundColor: Theme.of(context).colorScheme.primary),
             ),
           ],
         ),

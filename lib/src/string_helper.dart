@@ -11,7 +11,7 @@ String listIntoCommaSeparatedString(List<String> stringList) {
 
   for (var i = 0; i < stringList.length; ++i) {
     var listItem = stringList[i];
-    sb.write(i != stringList.length - 1 ? listItem + ', ' : listItem);
+    sb.write(i != stringList.length - 1 ? '$listItem, ' : listItem);
   }
   return sb.toString();
 }
