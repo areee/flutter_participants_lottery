@@ -18,7 +18,6 @@ dependencies:
   # audioplayers: ^0.19.1 # Do not use for now (to support also Windows desktop)
   envify: any
   google_fonts: ^3.0.1
-  get: ^4.6.5
 
 dev_dependencies:
   envify_generator: any
