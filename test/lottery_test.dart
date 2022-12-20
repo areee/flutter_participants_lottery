@@ -5,6 +5,6 @@ void main() {
   test("Lottery list gives names in another ordered list", () {
     const names = ['a', 'b', 'c', 'd'];
 
-    expect(lottery.runLotteryListReturnList(names), isNot(names));
+    expect(lottery.runLotteryList(names), isNot(names));
   });
 }

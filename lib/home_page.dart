@@ -93,8 +93,7 @@ class _HomePageState extends State<HomePage> {
 
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNamesInList =
-          lottery.runLotteryListReturnList(_participantNamesInList);
+      _participantNamesInList = lottery.runLotteryList(_participantNamesInList);
       prefs.setStringList('participantNamesInList', _participantNamesInList);
     });
   }
