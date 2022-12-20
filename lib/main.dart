@@ -16,7 +16,7 @@ class FplApp extends StatelessWidget {
       title: 'Osallistujien arvonta',
       darkTheme: darkFplTheme(context),
       theme: lightFplTheme(context),
-      home: const HomePage(title: 'Osallistujien arvonta'),
+      home: const HomePage(title: 'Hyvää joulua!'),
     );
   }
 }
