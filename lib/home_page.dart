@@ -73,16 +73,19 @@ class _HomePageState extends State<HomePage> {
 
     EmojiAlert(
         emojiType: EMOJI_TYPE.WINK,
-        background: Theme.of(context).colorScheme.secondary,
+        background: Theme.of(context).colorScheme.background,
         enableMainButton: true,
         mainButtonText: const Text('Sulje'),
-        mainButtonColor: Theme.of(context).colorScheme.primary,
+        mainButtonColor: Theme.of(context).colorScheme.onPrimary,
         onMainButtonPressed: () {
           Navigator.pop(context);
         },
         description: Column(
           children: const [
-            Text('Aika loppui', style: TextStyle(color: Colors.white)),
+            Text(
+              'Aika loppui',
+              style: TextStyle(fontSize: 20),
+            ),
           ],
         )).displayAlert(context);
   }
