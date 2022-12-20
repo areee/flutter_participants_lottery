@@ -1,70 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'constants.dart';
-
 ThemeData lightFplTheme(BuildContext context) {
-  return DateTime.now().isAfter(firstSummer2022Day())
-      ? _lightSummer2022Theme(context)
-      : _lightSpring2022Theme(context);
+  return _lightChristmas2022Theme(context);
 }
 
 ThemeData darkFplTheme(BuildContext context) {
-  return DateTime.now().isAfter(firstSummer2022Day())
-      ? _darkSummer2022Theme(context)
-      : _darkSpring2022Theme(context);
+  return _darkChristmas2022Theme(context);
 }
 
-/// Spring 2022 theme for light mode.
-ThemeData _lightSpring2022Theme(BuildContext context) {
+/// Christmas 2022 theme for light mode.
+ThemeData _lightChristmas2022Theme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.green, brightness: Brightness.light)
-        .copyWith(secondary: Colors.yellowAccent[700]),
-    textTheme: GoogleFonts.fredokaOneTextTheme(
+            primarySwatch: Colors.red, brightness: Brightness.light)
+        .copyWith(secondary: Colors.greenAccent[700]),
+    textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
       Theme.of(context).textTheme,
     ),
+    useMaterial3: true,
   );
 }
 
-/// Spring 2022 theme for dark mode.
-ThemeData _darkSpring2022Theme(BuildContext context) {
+/// Christmas 2022 theme for dark mode.
+ThemeData _darkChristmas2022Theme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.green, brightness: Brightness.dark)
-        .copyWith(secondary: Colors.yellowAccent[700]),
-    textTheme: GoogleFonts.fredokaOneTextTheme(
+            primarySwatch: Colors.red, brightness: Brightness.dark)
+        .copyWith(secondary: Colors.greenAccent[700]),
+    textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
       Theme.of(context).textTheme.apply(
             bodyColor: Colors.white,
             displayColor: Colors.white,
           ),
     ),
-  );
-}
-
-/// Summer 2022 theme for light mode.
-ThemeData _lightSummer2022Theme(BuildContext context) {
-  return ThemeData(
-    colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.amber, brightness: Brightness.light)
-        .copyWith(secondary: Colors.orange[700]),
-    textTheme: GoogleFonts.fredokaOneTextTheme(
-      Theme.of(context).textTheme,
-    ),
-  );
-}
-
-/// Summer 2022 theme for dark mode.
-ThemeData _darkSummer2022Theme(BuildContext context) {
-  return ThemeData(
-    colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.amber, brightness: Brightness.dark)
-        .copyWith(secondary: Colors.orange[700]),
-    textTheme: GoogleFonts.fredokaOneTextTheme(
-      Theme.of(context).textTheme.apply(
-            bodyColor: Colors.white,
-            displayColor: Colors.white,
-          ),
-    ),
+    useMaterial3: true,
   );
 }
