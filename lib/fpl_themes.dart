@@ -18,6 +18,7 @@ ThemeData _lightChristmas2022Theme(BuildContext context) {
     textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
       Theme.of(context).textTheme,
     ),
+    useMaterial3: true,
   );
 }
 
@@ -33,5 +34,6 @@ ThemeData _darkChristmas2022Theme(BuildContext context) {
             displayColor: Colors.white,
           ),
     ),
+    useMaterial3: true,
   );
 }
