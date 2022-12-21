@@ -210,7 +210,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 75,
+              height: 77,
               child: _participantNamesInList.isNotEmpty
                   ? ListView(
                       shrinkWrap: true,
