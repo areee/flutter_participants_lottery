@@ -95,13 +95,18 @@ class _HomePageState extends State<HomePage> {
               'Syötä nimet',
               style: Theme.of(context).textTheme.headline4,
             ),
-            content: TextField(
-              controller: _textEditingController
-                ..text = string_helper
-                    .listIntoCommaSeparatedString(_participantNamesInList),
-              decoration: const InputDecoration(
-                  hintText: "Syötä nimet, erottele pilkuilla"),
-              style: Theme.of(context).textTheme.bodyText1,
+            content: SizedBox(
+              width: 300,
+              child: TextField(
+                controller: _textEditingController
+                  ..text = string_helper
+                      .listIntoCommaSeparatedString(_participantNamesInList),
+                style: Theme.of(context).textTheme.bodyText1,
+                decoration: const InputDecoration(
+                  hintText: "Syötä nimet, erottele pilkuilla",
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
             actions: <Widget>[
               TextButton(
