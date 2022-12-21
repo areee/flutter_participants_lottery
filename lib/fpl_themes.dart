@@ -26,8 +26,8 @@ ThemeData _lightChristmas2022Theme(BuildContext context) {
               fontWeight: FontWeight.bold,
             ),
             bodyText1: const TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+              fontWeight: FontWeight.w900,
               color: Colors.red,
             ),
             bodyText2: const TextStyle(
@@ -60,8 +60,8 @@ ThemeData _darkChristmas2022Theme(BuildContext context) {
               fontWeight: FontWeight.bold,
             ),
             bodyText1: const TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+              fontWeight: FontWeight.w900,
               color: Colors.red,
             ),
             bodyText2: const TextStyle(
