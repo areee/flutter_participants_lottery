@@ -17,7 +17,7 @@ class AvatarWidget extends StatelessWidget {
             'https://api.multiavatar.com/$participantName.png?apikey=${Env.multiavatar}',
             height: 50,
           ),
-          Text(participantName)
+          Text(participantName, style: Theme.of(context).textTheme.bodyText1)
         ],
       ),
     );

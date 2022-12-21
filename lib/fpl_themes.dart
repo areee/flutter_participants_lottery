@@ -16,7 +16,26 @@ ThemeData _lightChristmas2022Theme(BuildContext context) {
             primarySwatch: Colors.red, brightness: Brightness.light)
         .copyWith(secondary: Colors.greenAccent[700]),
     textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
-      Theme.of(context).textTheme,
+      Theme.of(context).textTheme.copyWith(
+            headline3: const TextStyle(
+              fontSize: 40.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            headline4: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            bodyText1: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
+            bodyText2: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
     ),
     useMaterial3: true,
   );
@@ -29,7 +48,29 @@ ThemeData _darkChristmas2022Theme(BuildContext context) {
             primarySwatch: Colors.red, brightness: Brightness.dark)
         .copyWith(secondary: Colors.greenAccent[700]),
     textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
-      Theme.of(context).textTheme.apply(
+      Theme.of(context)
+          .textTheme
+          .copyWith(
+            headline3: const TextStyle(
+              fontSize: 40.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            headline4: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+            bodyText1: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
+            bodyText2: const TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          )
+          .apply(
             bodyColor: Colors.white,
             displayColor: Colors.white,
           ),
