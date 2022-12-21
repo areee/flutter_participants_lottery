@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
-// import 'package:audioplayers/audioplayers.dart'; // Do not use for now (to support also Windows desktop)
 import 'components/custom_app_bar.dart';
 import 'src/countdown_button.dart';
 import 'src/lottery_logic.dart' as lottery;
@@ -20,7 +19,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // var audioCache = AudioCache(); // Do not use for now (to support also Windows desktop)
   final _countDownController = CountDownController();
   final _duration = 90;
   final _textEditingController = TextEditingController();
@@ -31,18 +29,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _loadData();
   }
-
-  /// Play a self-made lottery sound (made by Arttu Ylhävuori)
-  // void _playLotterySound() {
-  // Do not use for now (to support also Windows desktop)
-  //   audioCache.play('arvonta_kaynnissa.mp3', mode: PlayerMode.LOW_LATENCY);
-  // }
-
-  /// Play a self-made time's up sound (made by Arttu Ylhävuori)
-  // void _playTimeIsUpSound() {
-  // Do not use for now (to support also Windows desktop)
-  //   audioCache.play('aika_loppui.mp3', mode: PlayerMode.LOW_LATENCY);
-  // }
 
   /// Load data in SharedPreferences on start
   void _loadData() async {
@@ -65,8 +51,6 @@ class _HomePageState extends State<HomePage> {
 
   /// When the time's up, show an emoji alert
   void _timeIsUp() {
-    // _playTimeIsUpSound(); // Do not use for now (to support also Windows desktop)
-
     if (kDebugMode) {
       print('Time\'s Up');
     }
@@ -75,16 +59,19 @@ class _HomePageState extends State<HomePage> {
         emojiType: EMOJI_TYPE.WINK,
         background: Theme.of(context).colorScheme.background,
         enableMainButton: true,
-        mainButtonText: const Text('Sulje'),
-        mainButtonColor: Theme.of(context).colorScheme.onPrimary,
+        mainButtonText: Text(
+          'Sulje',
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
+        mainButtonColor: Theme.of(context).colorScheme.primary,
         onMainButtonPressed: () {
           Navigator.pop(context);
         },
         description: Column(
-          children: const [
+          children: [
             Text(
               'Aika loppui',
-              style: TextStyle(fontSize: 20),
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         )).displayAlert(context);
@@ -92,8 +79,6 @@ class _HomePageState extends State<HomePage> {
 
   /// Run lottery when the button is clicked
   void _runLottery() async {
-    // _playLotterySound(); // Do not use for now (to support also Windows desktop)
-
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       _participantNamesInList = lottery.runLotteryList(_participantNamesInList);
@@ -108,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             title: Text(
               'Syötä nimet',
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headline4,
             ),
             content: TextField(
               controller: _textEditingController
@@ -120,7 +105,10 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: <Widget>[
               TextButton(
-                child: const Text('Peruuta'),
+                child: Text(
+                  'Peruuta',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
@@ -128,7 +116,10 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               TextButton(
-                child: const Text('OK'),
+                child: Text(
+                  'OK',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 onPressed: () async {
                   _setParticipantNames(context);
                 },
@@ -195,10 +186,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundGradient: null,
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
-                textStyle: const TextStyle(
-                    fontSize: 33.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                textStyle: Theme.of(context).textTheme.headline3,
                 textFormat: CountdownTextFormat.MM_SS,
                 isReverse: true,
                 isReverseAnimation: true,
@@ -222,7 +210,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 70,
+              height: 75,
               child: _participantNamesInList.isNotEmpty
                   ? ListView(
                       shrinkWrap: true,
@@ -231,9 +219,9 @@ class _HomePageState extends State<HomePage> {
                           .map((name) => AvatarWidget(participantName: name))
                           .toList(),
                     )
-                  : const Text(
+                  : Text(
                       'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
-                      style: TextStyle(color: Colors.grey),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
             ),
             ElevatedButton.icon(
@@ -244,7 +232,10 @@ class _HomePageState extends State<HomePage> {
                 Icons.shuffle,
                 size: 18,
               ),
-              label: const Text("Arvo"),
+              label: Text(
+                "Arvo",
+                style: Theme.of(context).textTheme.bodyText2,
+              ),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
                 backgroundColor: Theme.of(context).colorScheme.primary,
