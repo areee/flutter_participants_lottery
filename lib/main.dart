@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_bar_text.dart';
 import 'fpl_themes.dart';
 import 'home_page.dart';
 
@@ -16,7 +17,7 @@ class FplApp extends StatelessWidget {
       title: 'Osallistujien arvonta',
       darkTheme: darkFplTheme(context),
       theme: lightFplTheme(context),
-      home: const HomePage(title: 'Hyvää joulua!'),
+      home: HomePage(title: getAppBarText()),
     );
   }
 }
