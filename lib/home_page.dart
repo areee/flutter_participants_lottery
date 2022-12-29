@@ -2,12 +2,13 @@ import 'package:emoji_alert/arrays.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:flutter_participants_lottery/extensions/string_extension.dart';
+import 'package:flutter_participants_lottery/extensions/string_list_extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'components/custom_app_bar.dart';
 import 'src/countdown_button.dart';
 import 'src/lottery_logic.dart' as lottery;
-import 'src/string_helper.dart' as string_helper;
 import 'src/avatar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,8 +40,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       // If the user's local storage has already some old comma-separated string names
       if (oldWay.isNotEmpty && newWay.isEmpty) {
-        _participantNamesInList =
-            string_helper.commaSeparatedStringIntoList(oldWay);
+        _participantNamesInList = oldWay.commaSeparatedStringIntoList();
         prefs.setStringList('participantNamesInList', _participantNamesInList);
         prefs.setString('participantNames', '');
       } else {
@@ -99,8 +99,8 @@ class _HomePageState extends State<HomePage> {
               width: 300,
               child: TextField(
                 controller: _textEditingController
-                  ..text = string_helper
-                      .listIntoCommaSeparatedString(_participantNamesInList),
+                  ..text =
+                      _participantNamesInList.listIntoCommaSeparatedString(),
                 style: Theme.of(context).textTheme.bodyText1,
                 decoration: const InputDecoration(
                   hintText: "Syötä nimet, erottele pilkuilla",
@@ -137,8 +137,8 @@ class _HomePageState extends State<HomePage> {
   Future<void> _setParticipantNames(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNamesInList = string_helper
-          .commaSeparatedStringIntoList(_textEditingController.text);
+      _participantNamesInList =
+          _textEditingController.text.commaSeparatedStringIntoList();
       prefs.setStringList('participantNamesInList', _participantNamesInList);
       Navigator.pop(context);
     });

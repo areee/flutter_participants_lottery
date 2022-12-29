@@ -7,4 +7,9 @@ extension StringExtension on String {
   /// Returns a string with the first letter capitalized and the rest lowercased
   String toCapitalized() =>
       length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+
+  /// Converts a comma separated string into a list
+  List<String> commaSeparatedStringIntoList() {
+    return replaceAll(RegExp(r'\s+'), '').split(',');
+  }
 }
