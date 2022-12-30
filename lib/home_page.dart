@@ -9,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'components/custom_app_bar.dart';
 import 'src/countdown_button.dart';
-import 'src/lottery_logic.dart' as lottery;
 import 'src/avatar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,7 +73,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> _runLottery() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNamesInList = lottery.runLotteryList(_participantNamesInList);
+      _participantNamesInList = _participantNamesInList.runLotteryList();
       prefs.setStringList('participantNamesInList', _participantNamesInList);
     });
   }
