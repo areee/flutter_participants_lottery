@@ -10,6 +10,7 @@ extension StringExtension on String {
 
   /// Converts a comma separated string into a list
   List<String> commaSeparatedStringIntoList() {
+    if (isEmpty) return [];
     return replaceAll(RegExp(r'\s+'), '').split(',');
   }
 }
