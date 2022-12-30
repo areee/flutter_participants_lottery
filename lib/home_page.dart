@@ -2,13 +2,13 @@ import 'package:emoji_alert/arrays.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:flutter_participants_lottery/components/run_lottery_button.dart';
 import 'package:flutter_participants_lottery/extensions/string_extension.dart';
 import 'package:flutter_participants_lottery/extensions/string_list_extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'components/custom_app_bar.dart';
 import 'src/countdown_button.dart';
-import 'src/lottery_logic.dart' as lottery;
 import 'src/avatar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,18 +34,10 @@ class _HomePageState extends State<HomePage> {
   /// Load data in SharedPreferences on start
   void _loadData() async {
     final prefs = await SharedPreferences.getInstance();
-    var oldWay = prefs.getString('participantNames') ?? '';
-    var newWay = prefs.getStringList('participantNamesInList') ?? <String>[];
 
     setState(() {
-      // If the user's local storage has already some old comma-separated string names
-      if (oldWay.isNotEmpty && newWay.isEmpty) {
-        _participantNamesInList = oldWay.commaSeparatedStringIntoList();
-        prefs.setStringList('participantNamesInList', _participantNamesInList);
-        prefs.setString('participantNames', '');
-      } else {
-        _participantNamesInList = newWay;
-      }
+      _participantNamesInList =
+          prefs.getStringList('participantNamesInList') ?? <String>[];
     });
   }
 
@@ -78,10 +70,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   /// Run lottery when the button is clicked
-  void _runLottery() async {
+  Future<void> _runLottery() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _participantNamesInList = lottery.runLotteryList(_participantNamesInList);
+      _participantNamesInList = _participantNamesInList.runLotteryList();
       prefs.setStringList('participantNamesInList', _participantNamesInList);
     });
   }
@@ -229,22 +221,8 @@ class _HomePageState extends State<HomePage> {
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
             ),
-            ElevatedButton.icon(
-              onPressed: () {
-                _runLottery();
-              },
-              icon: const Icon(
-                Icons.shuffle,
-                size: 18,
-              ),
-              label: Text(
-                "Arvo",
-                style: Theme.of(context).textTheme.bodyText2,
-              ),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                backgroundColor: Theme.of(context).colorScheme.primary,
-              ),
+            RunLotteryButton(
+              _participantNamesInList.isEmpty ? null : _runLottery,
             ),
           ],
         ),
