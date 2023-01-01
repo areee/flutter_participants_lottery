@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightFplTheme(BuildContext context) {
-  return _lightChristmas2022Theme(context);
+  return _lightWinter2023Theme(context);
 }
 
 ThemeData darkFplTheme(BuildContext context) {
-  return _darkChristmas2022Theme(context);
+  return _darkWinter2023Theme(context);
 }
 
-/// Christmas 2022 theme for light mode.
-ThemeData _lightChristmas2022Theme(BuildContext context) {
+/// Winter 2023 theme for light mode.
+ThemeData _lightWinter2023Theme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.red, brightness: Brightness.light)
+            primarySwatch: Colors.blue, brightness: Brightness.light)
         .copyWith(secondary: Colors.greenAccent[700]),
-    textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
+    textTheme: GoogleFonts.robotoMonoTextTheme(
       Theme.of(context).textTheme.copyWith(
             headline3: const TextStyle(
               fontSize: 40.0,
@@ -28,7 +28,7 @@ ThemeData _lightChristmas2022Theme(BuildContext context) {
             bodyText1: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w900,
-              color: Colors.red,
+              color: Colors.blue,
             ),
             bodyText2: const TextStyle(
               fontSize: 16.0,
@@ -41,13 +41,13 @@ ThemeData _lightChristmas2022Theme(BuildContext context) {
   );
 }
 
-/// Christmas 2022 theme for dark mode.
-ThemeData _darkChristmas2022Theme(BuildContext context) {
+/// Winter 2023 theme for dark mode.
+ThemeData _darkWinter2023Theme(BuildContext context) {
   return ThemeData(
     colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.red, brightness: Brightness.dark)
+            primarySwatch: Colors.blue, brightness: Brightness.dark)
         .copyWith(secondary: Colors.greenAccent[700]),
-    textTheme: GoogleFonts.mountainsOfChristmasTextTheme(
+    textTheme: GoogleFonts.robotoMonoTextTheme(
       Theme.of(context)
           .textTheme
           .copyWith(
@@ -62,7 +62,7 @@ ThemeData _darkChristmas2022Theme(BuildContext context) {
             bodyText1: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w900,
-              color: Colors.red,
+              color: Colors.blue,
             ),
             bodyText2: const TextStyle(
               fontSize: 16.0,
