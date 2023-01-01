@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                       _participantNamesInList.listIntoCommaSeparatedString(),
                 style: Theme.of(context).textTheme.bodyText1,
                 decoration: const InputDecoration(
-                  hintText: "Syötä nimet, erottele pilkuilla",
+                  hintText: 'Syötä nimet, erottele pilkuilla',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -234,21 +234,21 @@ class _HomePageState extends State<HomePage> {
             width: 30,
           ),
           CountdownButton(
-            "Aloita",
+            'Aloita',
             () => _countDownController.start(),
           ),
           const SizedBox(
             width: 10,
           ),
           CountdownButton(
-            "Tauko",
+            'Tauko',
             () => _countDownController.pause(),
           ),
           const SizedBox(
             width: 10,
           ),
           CountdownButton(
-            "Jatka",
+            'Jatka',
             () => _countDownController.resume(),
           ),
           const SizedBox(
