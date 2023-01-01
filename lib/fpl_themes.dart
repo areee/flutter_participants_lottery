@@ -18,20 +18,21 @@ ThemeData _lightWinter2023Theme(BuildContext context) {
     textTheme: GoogleFonts.robotoMonoTextTheme(
       Theme.of(context).textTheme.copyWith(
             headline3: const TextStyle(
-              fontSize: 40.0,
+              fontSize: 38.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
             headline4: const TextStyle(
+              fontSize: 28.0,
               fontWeight: FontWeight.bold,
             ),
             bodyText1: const TextStyle(
-              fontSize: 18.0,
+              fontSize: 16.0,
               fontWeight: FontWeight.w900,
               color: Colors.blue,
             ),
             bodyText2: const TextStyle(
-              fontSize: 16.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
@@ -52,20 +53,21 @@ ThemeData _darkWinter2023Theme(BuildContext context) {
           .textTheme
           .copyWith(
             headline3: const TextStyle(
-              fontSize: 40.0,
+              fontSize: 38.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
             headline4: const TextStyle(
+              fontSize: 28.0,
               fontWeight: FontWeight.bold,
             ),
             bodyText1: const TextStyle(
-              fontSize: 18.0,
+              fontSize: 16.0,
               fontWeight: FontWeight.w900,
               color: Colors.blue,
             ),
             bodyText2: const TextStyle(
-              fontSize: 16.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
