@@ -2,7 +2,7 @@ import 'package:flutter_participants_lottery/extensions/string_list_extension.da
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test("Lottery list gives names in another ordered list", () {
+  test('Lottery list gives names in another ordered list', () {
     var names = [
       'a',
       'b',
@@ -35,7 +35,7 @@ void main() {
     expect(names2.runLotteryList(), isNot(names));
   });
 
-  test("Empty list gives empty list", () {
+  test('Empty list gives empty list', () {
     var names = <String>[];
     var names2 = names.toList();
     expect(names2.runLotteryList(), names);
