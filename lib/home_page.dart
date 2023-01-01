@@ -84,18 +84,18 @@ class _HomePageState extends State<HomePage> {
         builder: (context) {
           return AlertDialog(
             title: Text(
-              'Syötä nimet',
+              'Asetukset',
               style: Theme.of(context).textTheme.headline4,
             ),
             content: SizedBox(
-              width: 300,
+              width: 350,
               child: TextField(
                 controller: _textEditingController
                   ..text =
                       _participantNamesInList.listIntoCommaSeparatedString(),
                 style: Theme.of(context).textTheme.bodyText1,
                 decoration: const InputDecoration(
-                  hintText: 'Syötä nimet, erottele pilkuilla',
+                  labelText: 'Syötä nimet, erottele pilkuilla',
                   border: OutlineInputBorder(),
                 ),
               ),
