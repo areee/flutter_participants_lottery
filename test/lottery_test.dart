@@ -1,14 +1,43 @@
+import 'package:flutter_participants_lottery/extensions/string_list_extension.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_participants_lottery/src/lottery_logic.dart' as lottery;
 
 void main() {
   test("Lottery list gives names in another ordered list", () {
-    const names = ['a', 'b', 'c', 'd'];
-    expect(lottery.runLotteryList(names), isNot(names));
+    var names = [
+      'a',
+      'b',
+      'c',
+      'd',
+      'e',
+      'f',
+      'g',
+      'h',
+      'i',
+      'j',
+      'k',
+      'l',
+      'm',
+      'n',
+      'o',
+      'p',
+      'q',
+      'r',
+      's',
+      't',
+      'u',
+      'v',
+      'w',
+      'x',
+      'y',
+      'z'
+    ];
+    var names2 = names.toList();
+    expect(names2.runLotteryList(), isNot(names));
   });
 
   test("Empty list gives empty list", () {
-    const names = <String>[];
-    expect(lottery.runLotteryList(names), names);
+    var names = <String>[];
+    var names2 = names.toList();
+    expect(names2.runLotteryList(), names);
   });
 }
