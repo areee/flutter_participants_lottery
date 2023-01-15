@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:emoji_alert/emoji_alert.dart';
 import 'components/custom_app_bar.dart';
 import 'src/countdown_button.dart';
-import 'src/avatar_widget.dart';
+import 'components/avatar_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -144,6 +144,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final axisCount = (MediaQuery.of(context).size.width / 140).round();
+
     List<Widget> actions = [
       IconButton(
         onPressed: () {
@@ -155,21 +157,18 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
-      appBar: customAppBar(context, widget.title, actions),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Puheaika',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircularCountDownTimer(
+      appBar: customAppBar(
+        context,
+        widget.title,
+        actions,
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(height: 40),
+              CircularCountDownTimer(
                 width: MediaQuery.of(context).size.width / 2,
                 height: MediaQuery.of(context).size.height / 2,
                 duration: _duration,
@@ -198,33 +197,29 @@ class _HomePageState extends State<HomePage> {
                   _timeIsUp();
                 },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Järjestys',
-                style: Theme.of(context).textTheme.headline4,
+              const SizedBox(height: 40),
+              RunLotteryButton(
+                _participantNamesInList.isEmpty ? null : _runLottery,
+                _participantNamesInList.length,
               ),
-            ),
-            SizedBox(
-              height: 77,
-              child: _participantNamesInList.isNotEmpty
-                  ? ListView(
+              _participantNamesInList.isNotEmpty
+                  ? GridView.count(
                       shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
+                      crossAxisCount: axisCount,
                       children: _participantNamesInList
-                          .map((name) => AvatarWidget(participantName: name))
+                          .map((name) => AvatarWidget(name: name))
                           .toList(),
                     )
-                  : Text(
-                      'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
-                      style: Theme.of(context).textTheme.bodyText1,
+                  : Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
                     ),
-            ),
-            RunLotteryButton(
-              _participantNamesInList.isEmpty ? null : _runLottery,
-            ),
-          ],
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
       floatingActionButton: Row(
