@@ -17,6 +17,7 @@ dependencies:
   emoji_alert:  ^1.1.0
   envify: any
   google_fonts: ^3.0.1
+  random_avatar: ^0.0.7
 
 dev_dependencies:
   envify_generator: any
