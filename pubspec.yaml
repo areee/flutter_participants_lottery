@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   circular_countdown_timer: ^0.2.3
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.16
   emoji_alert:  ^1.1.0
   envify: any
   google_fonts: ^3.0.1
