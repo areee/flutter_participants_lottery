@@ -15,13 +15,10 @@ dependencies:
   circular_countdown_timer: ^0.2.3
   shared_preferences: ^2.0.16
   emoji_alert:  ^1.1.0
-  envify: any
   google_fonts: ^3.0.1
   random_avatar: ^0.0.7
 
 dev_dependencies:
-  envify_generator: any
-  build_runner: any
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
