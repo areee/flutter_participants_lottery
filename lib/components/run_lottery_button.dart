@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class RunLotteryButton extends StatelessWidget {
   final VoidCallback? onPressed;
+  final int participantsCount;
 
-  const RunLotteryButton(this.onPressed, {Key? key}) : super(key: key);
+  const RunLotteryButton(this.onPressed, this.participantsCount, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class RunLotteryButton extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       label: Text(
-        'Arvo',
+        'Arvo ($participantsCount kpl)',
         style: Theme.of(context).textTheme.bodyText2,
       ),
     );
