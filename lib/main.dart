@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_bar_text.dart';
+import 'components/app_bar_text.dart';
 import 'fpl_themes.dart';
 import 'home_page.dart';
 

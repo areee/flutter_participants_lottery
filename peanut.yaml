@@ -1,3 +1,5 @@
 # Configuration for https://pub.dev/packages/peanut
 
+# HOX: Currently not in use; use Gihub Actions for deploying
+
 extra-args: "--base-href /flutter_participants_lottery/"
