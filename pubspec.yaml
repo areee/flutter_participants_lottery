@@ -15,7 +15,7 @@ dependencies:
   circular_countdown_timer: ^0.2.3
   shared_preferences: ^2.0.17
   emoji_alert:  ^1.1.0
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.1
   random_avatar: ^0.0.7
 
 dev_dependencies:
