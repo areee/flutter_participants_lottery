@@ -11,10 +11,10 @@ class AvatarWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        randomAvatar(name, width: 50, height: 50),
+        RandomAvatar(name, width: 50, height: 50),
         Text(
           name,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
       ],
     );
