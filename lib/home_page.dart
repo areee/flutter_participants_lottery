@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         enableMainButton: true,
         mainButtonText: Text(
           'Sulje',
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         mainButtonColor: Theme.of(context).colorScheme.primary,
         onMainButtonPressed: () {
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               'Aika loppui',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         )).displayAlert(context);
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           return AlertDialog(
             title: Text(
               'Asetukset',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             content: SizedBox(
               width: 350,
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 controller: _textEditingController
                   ..text =
                       _participantNamesInList.listIntoCommaSeparatedString(),
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
                 decoration: const InputDecoration(
                   labelText: 'Syötä nimet, erottele pilkuilla',
                   border: OutlineInputBorder(),
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 child: Text(
                   'Peruuta',
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 onPressed: () {
                   setState(() {
@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 child: Text(
                   'OK',
-                  style: Theme.of(context).textTheme.bodyText1,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 onPressed: () async {
                   _setParticipantNames(context);
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                 backgroundGradient: null,
                 strokeWidth: 20.0,
                 strokeCap: StrokeCap.round,
-                textStyle: Theme.of(context).textTheme.headline3,
+                textStyle: Theme.of(context).textTheme.displaySmall,
                 textFormat: CountdownTextFormat.MM_SS,
                 isReverse: true,
                 isReverseAnimation: true,
@@ -214,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
                         'Vinkki: lisää osallistujat oikean yläkulman asetukset-napista!',
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
               const SizedBox(height: 20),

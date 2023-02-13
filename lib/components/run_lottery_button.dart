@@ -20,7 +20,7 @@ class RunLotteryButton extends StatelessWidget {
       ),
       label: Text(
         'Arvo ($participantsCount kpl)',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     );
   }
