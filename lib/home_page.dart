@@ -2,6 +2,7 @@ import 'package:emoji_alert/arrays.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_participants_lottery/components/run_lottery_button.dart';
 import 'package:flutter_participants_lottery/extensions/string_extension.dart';
 import 'package:flutter_participants_lottery/extensions/string_list_extension.dart';
@@ -21,9 +22,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _countDownController = CountDownController();
-  final _duration = 90;
-  final _textEditingController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _participantNameController = TextEditingController();
+  final _secondsController = TextEditingController();
   var _participantNamesInList = <String>[];
+  var _duration = 90;
 
   @override
   void initState() {
@@ -38,6 +41,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _participantNamesInList =
           prefs.getStringList('participantNamesInList') ?? <String>[];
+      _duration = prefs.getInt('duration') ?? 90;
     });
   }
 
@@ -87,17 +91,52 @@ class _HomePageState extends State<HomePage> {
               'Asetukset',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            content: SizedBox(
-              width: 350,
-              child: TextField(
-                controller: _textEditingController
-                  ..text =
-                      _participantNamesInList.listIntoCommaSeparatedString(),
-                style: Theme.of(context).textTheme.bodyLarge,
-                decoration: const InputDecoration(
-                  labelText: 'Syötä nimet, erottele pilkuilla',
-                  border: OutlineInputBorder(),
-                ),
+            content: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      controller: _secondsController
+                        ..text = _duration.toString(),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      decoration: const InputDecoration(
+                        labelText: 'Ajastimen kesto sekunteina',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Syötä sekuntit';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      controller: _participantNameController
+                        ..text = _participantNamesInList
+                            .listIntoCommaSeparatedString(),
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      decoration: const InputDecoration(
+                        labelText: 'Syötä nimet, erottele pilkuilla',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Syötä vähintään yksi nimi';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             actions: <Widget>[
@@ -128,17 +167,28 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _setParticipantNames(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _participantNamesInList =
-          _textEditingController.text.commaSeparatedStringIntoList();
-      prefs.setStringList('participantNamesInList', _participantNamesInList);
-      Navigator.pop(context);
-    });
+
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        _participantNamesInList =
+            _participantNameController.text.commaSeparatedStringIntoList();
+        prefs.setStringList('participantNamesInList', _participantNamesInList);
+
+        _duration = int.parse(_secondsController.text);
+        prefs.setInt('duration', _duration);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Asetukset tallennettu')),
+        );
+        Navigator.pop(context);
+      });
+    }
   }
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _participantNameController.dispose();
+    _secondsController.dispose();
     super.dispose();
   }
 
