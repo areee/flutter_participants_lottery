@@ -8,6 +8,7 @@ class Controller extends GetxController {
   final timerStatus = TimerStatus.stopped.obs;
   final countDownController = CountDownController().obs;
   final timerDuration = 90.obs;
+  final participantNames = <String>[].obs;
 
   final box = GetStorage();
 
@@ -15,6 +16,7 @@ class Controller extends GetxController {
   onInit() {
     super.onInit();
     _initializeTimerDuration();
+    _initializeParticipantNames();
   }
 
   _initializeTimerDuration() {
@@ -23,10 +25,31 @@ class Controller extends GetxController {
     }
   }
 
+  _initializeParticipantNames() {
+    if (box.read('participantNames') != null) {
+      participantNames.value = box.read('participantNames');
+    }
+  }
+
   setTimerDuration(int value) {
     setStopped();
     timerDuration.value = value;
     box.write('timerDuration', value);
+  }
+
+  addParticipantName(String value) {
+    participantNames.add(value);
+    box.write('participantNames', participantNames);
+  }
+
+  removeParticipantName(String value) {
+    participantNames.remove(value);
+    box.write('participantNames', participantNames);
+  }
+
+  setParticipantNames(List<String> value) {
+    participantNames.value = value;
+    box.write('participantNames', participantNames);
   }
 
   setRunning() {

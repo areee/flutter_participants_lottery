@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'components/app_bar_text.dart';
 import 'fpl_themes.dart';
-import 'home_page.dart';
+import 'pages/home_page.dart';
 
-void main() {
+Future<void> main() async {
+  await GetStorage.init();
   runApp(const FplApp());
 }
 
@@ -12,12 +15,26 @@ class FplApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => Home(title: getAppBarText()),
+        ),
+        // GetPage(
+        //   name: '/settings',
+        //   page: () => const Settings(),
+        // ),
+        // GetPage(
+        //   name: '/about',
+        //   page: () => const About(),
+        // ),
+      ],
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',
       darkTheme: darkFplTheme(context),
       theme: lightFplTheme(context),
-      home: HomePage(title: getAppBarText()),
     );
   }
 }
