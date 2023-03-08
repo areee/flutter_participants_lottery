@@ -1,72 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_participants_lottery/components/custom_app_bar.dart';
+import 'package:flutter_participants_lottery/components/custom_bottom_app_bar.dart';
 import 'package:flutter_participants_lottery/components/home_app_bar_actions.dart';
+import 'package:flutter_participants_lottery/components/home_body_content.dart';
 import 'package:flutter_participants_lottery/controllers/controller.dart';
+import 'package:flutter_participants_lottery/static.dart';
 import 'package:get/get.dart';
-import '../components/custom_app_bar.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key, required this.title}) : super(key: key);
+  const Home({super.key, required this.title});
   final String title;
-
-  // Future<void> _displayTextInputDialog(BuildContext context) async {
-  //   return showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return AlertDialog(
-  //           title: Text(
-  //             'Asetukset',
-  //             style: Theme.of(context).textTheme.headlineMedium,
-  //           ),
-  //           content: SizedBox(
-  //             width: 350,
-  //             child: TextField(
-  //               controller: _textEditingController
-  //                 ..text =
-  //                     _participantNamesInList.listIntoCommaSeparatedString(),
-  //               style: Theme.of(context).textTheme.bodyLarge,
-  //               decoration: const InputDecoration(
-  //                 labelText: 'Syötä nimet, erottele pilkuilla',
-  //                 border: OutlineInputBorder(),
-  //               ),
-  //             ),
-  //           ),
-  //           actions: <Widget>[
-  //             TextButton(
-  //               child: Text(
-  //                 'Peruuta',
-  //                 style: Theme.of(context).textTheme.bodyLarge,
-  //               ),
-  //               onPressed: () {
-  //                 Navigator.pop(context);
-  //               },
-  //             ),
-  //             TextButton(
-  //               child: Text(
-  //                 'Tallenna',
-  //                 style: Theme.of(context).textTheme.bodyLarge,
-  //               ),
-  //               onPressed: () {
-  //                 if (kDebugMode) {
-  //                   print('Tallennetaan');
-  //                 }
-  //                 Navigator.pop(context);
-  //               },
-  //             ),
-  //           ],
-  //         );
-  //       });
-  // }
 
   @override
   Widget build(BuildContext context) {
     final Controller c = Get.put(Controller());
-    final axisCount = (MediaQuery.of(context).size.width / 140).round();
+    final ac = (MediaQuery.of(context).size.width / 140).round();
 
     return Scaffold(
       appBar: customAppBar(context, title, appBarActions(context)),
+      body: HomePageBodyContent(controller: c, axisCount: ac),
+      floatingActionButton: Obx(() => FloatingActionButton(
+            onPressed: () {
+              c.timerStatus.value == TimerStatus.running
+                  ? c.setPaused()
+                  : c.setRunning();
+            },
+            tooltip: c.timerStatus.value == TimerStatus.running
+                ? 'Tauko'
+                : 'Käynnistä',
+            child: Icon(
+              c.timerStatus.value == TimerStatus.running
+                  ? Icons.pause
+                  : Icons.play_arrow,
+            ),
+          )),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: const CustomBottomAppBar(),
     );
   }
 }
+
+
 
 // class _HomeState extends State<Home> {
 //   final _countDownController = CountDownController();

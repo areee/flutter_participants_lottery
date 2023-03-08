@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_participants_lottery/controllers/controller.dart';
@@ -73,7 +72,7 @@ void settingsDialog(BuildContext context) {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
               },
             ),
             TextButton(
@@ -82,9 +81,6 @@ void settingsDialog(BuildContext context) {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               onPressed: () {
-                if (kDebugMode) {
-                  print('Tallennetaan');
-                }
                 if (formKey.currentState!.validate()) {
                   c.setTimerDuration(int.parse(timerDurationController.text));
 
@@ -95,7 +91,7 @@ void settingsDialog(BuildContext context) {
                     const SnackBar(content: Text('Asetukset tallennettu')),
                   );
 
-                  Navigator.pop(context);
+                  Get.back();
                 }
               },
             ),

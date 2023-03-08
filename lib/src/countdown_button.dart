@@ -4,8 +4,7 @@ class CountdownButton extends StatelessWidget {
   final String title;
   final VoidCallback? onPressed;
 
-  const CountdownButton(this.title, this.onPressed, {Key? key})
-      : super(key: key);
+  const CountdownButton(this.title, this.onPressed, {super.key});
 
   @override
   Widget build(BuildContext context) {

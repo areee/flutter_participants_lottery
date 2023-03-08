@@ -11,7 +11,7 @@ Future<void> main() async {
 }
 
 class FplApp extends StatelessWidget {
-  const FplApp({Key? key}) : super(key: key);
+  const FplApp({super.key});
 
   @override
   Widget build(BuildContext context) {

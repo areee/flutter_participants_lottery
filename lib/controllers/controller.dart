@@ -1,5 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_participants_lottery/extensions/string_list_extension.dart';
 import 'package:flutter_participants_lottery/static.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -27,7 +28,7 @@ class Controller extends GetxController {
 
   _initializeParticipantNames() {
     if (box.read('participantNames') != null) {
-      participantNames.value = box.read('participantNames');
+      participantNames.value = List<String>.from(box.read('participantNames'));
     }
   }
 
@@ -49,6 +50,11 @@ class Controller extends GetxController {
 
   setParticipantNames(List<String> value) {
     participantNames.value = value;
+    box.write('participantNames', participantNames);
+  }
+
+  mixParticipantNames() {
+    participantNames.value = participantNames.toList().runLotteryList();
     box.write('participantNames', participantNames);
   }
 

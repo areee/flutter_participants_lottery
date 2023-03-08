@@ -4,8 +4,7 @@ class RunLotteryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final int participantsCount;
 
-  const RunLotteryButton(this.onPressed, this.participantsCount, {Key? key})
-      : super(key: key);
+  const RunLotteryButton(this.onPressed, this.participantsCount, {super.key});
 
   @override
   Widget build(BuildContext context) {
