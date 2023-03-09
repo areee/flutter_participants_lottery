@@ -1,5 +1,15 @@
 import 'dart:math';
 
+/// Available app bar actions
+enum AppBarValues { settings, about }
+
+/// Timer statuses
+enum TimerStatus {
+  running,
+  paused,
+  stopped,
+}
+
 /// Returns days of the week in Finnish
 List<String> weekDays = [
   'maanantaita',

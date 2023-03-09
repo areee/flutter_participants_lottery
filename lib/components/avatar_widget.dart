@@ -4,7 +4,7 @@ import 'package:random_avatar/random_avatar.dart';
 class AvatarWidget extends StatelessWidget {
   final String name;
 
-  const AvatarWidget({Key? key, required this.name}) : super(key: key);
+  const AvatarWidget({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
