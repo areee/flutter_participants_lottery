@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_participants_lottery/pages/about_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'components/app_bar_text.dart';
@@ -22,10 +23,10 @@ class FplApp extends StatelessWidget {
           name: '/',
           page: () => Home(title: getAppBarText()),
         ),
-        // GetPage(
-        //   name: '/about',
-        //   page: () => const About(),
-        // ),
+        GetPage(
+          name: '/about',
+          page: () => const About(),
+        ),
       ],
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',

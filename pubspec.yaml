@@ -1,9 +1,10 @@
 name: flutter_participants_lottery
-description: A participants lottery app
-
+description: Osallistujien arvontasovellus. A participants lottery app.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 version: 2.0.0+1
+
+_author: Arttu Ylhävuori
 
 environment:
   sdk: '>=2.19.4 <3.0.0'
@@ -18,11 +19,17 @@ dependencies:
   random_avatar: ^0.0.8
   get: ^4.6.5
   get_storage: ^2.1.1
+  about: ^2.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  pubspec_extract: ^2.0.5
+  build_runner: ^2.3.3
 
 flutter:
   uses-material-design: true
+  assets:
+    - LICENSE.md
+    - README.md
