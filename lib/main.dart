@@ -23,10 +23,6 @@ class FplApp extends StatelessWidget {
           page: () => Home(title: getAppBarText()),
         ),
         // GetPage(
-        //   name: '/settings',
-        //   page: () => const Settings(),
-        // ),
-        // GetPage(
         //   name: '/about',
         //   page: () => const About(),
         // ),
