@@ -40,6 +40,9 @@ void settingsDialog(BuildContext context) {
                       if (value == null || value.isEmpty) {
                         return 'Syötä sekuntit';
                       }
+                      if (int.parse(value) < 1) {
+                        return 'Syötä vähintään 1 sekunti';
+                      }
                       return null;
                     },
                   ),
