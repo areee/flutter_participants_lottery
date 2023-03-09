@@ -16,7 +16,7 @@ class About extends StatelessWidget {
       },
       title: const Text('Tietoja sovelluksesta'),
       applicationVersion:
-          'Versio {{ version }}, koontiversio #{{ buildNumber }}',
+          'Versio {{ version }}, koontiversio {{ buildNumber }}',
       applicationDescription: const Text(
         Pubspec.description,
         textAlign: TextAlign.justify,

@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2023, 3, 9, 21, 16, 59);
+  static final buildDate = DateTime.utc(2023, 3, 9, 21, 32, 52);
 
   static const name = 'flutter_participants_lottery';
 
@@ -12,7 +12,7 @@ mixin Pubspec {
 
   static const publish_to = 'none';
 
-  static const versionFull = '2.0.0+1';
+  static const versionFull = '2.0.0+2';
 
   static const version = '2.0.0';
 
@@ -24,7 +24,7 @@ mixin Pubspec {
 
   static const versionPatch = 0;
 
-  static const versionBuild = 1;
+  static const versionBuild = 2;
 
   static const versionPreRelease = '';
 
