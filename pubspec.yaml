@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   circular_countdown_timer: ^0.2.3
   emoji_alert: ^1.1.0
-  google_fonts: ^4.0.3
+  google_fonts: ^4.0.4
   random_avatar: ^0.0.8
   get: ^4.6.5
   get_storage: ^2.1.1
