@@ -3,7 +3,7 @@ import 'package:flutter_participants_lottery/pages/about_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'components/app_bar_text.dart';
-import 'fpl_themes.dart';
+import 'fpl_theme.dart';
 import 'pages/home_page.dart';
 
 Future<void> main() async {
@@ -30,8 +30,8 @@ class FplApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       title: 'Osallistujien arvonta',
-      darkTheme: darkFplTheme(context),
-      theme: lightFplTheme(context),
+      darkTheme: fplTheme(Brightness.dark),
+      theme: fplTheme(Brightness.light),
     );
   }
 }
