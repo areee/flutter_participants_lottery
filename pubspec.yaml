@@ -19,6 +19,11 @@ dependencies:
   get_storage: ^2.1.1
   google_fonts: ^6.1.0
   random_avatar: ^0.0.8
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+      ref: 6c66ad23ee79749f30a8eece542cf54eaf157ed8
 
 dev_dependencies:
   flutter_test:

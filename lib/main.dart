@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_participants_lottery/pages/about_page.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:window_size/window_size.dart';
 import 'components/app_bar_text.dart';
 import 'fpl_theme.dart';
 import 'pages/home_page.dart';
 
 Future<void> main() async {
   await GetStorage.init();
+  setWindowTitle('Osallistujien arvonta');
   runApp(const FplApp());
 }
 
