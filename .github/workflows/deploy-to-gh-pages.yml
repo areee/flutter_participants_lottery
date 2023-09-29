@@ -1,0 +1,31 @@
+name: Build and Deploy to Github Pages 🚀
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter 🔧
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Get Packages and Run Pubspec Extract 📦
+        run: |
+          flutter pub get
+          dart run pubspec_extract
+
+      - name: Build Web 🌐
+        run: flutter build web --release --base-href "/flutter_participants_lottery/"
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build/web
