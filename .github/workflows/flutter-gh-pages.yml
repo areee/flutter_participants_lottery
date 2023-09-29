@@ -11,6 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
-      - uses: bluefireteam/flutter-gh-pages@v8
         with:
-          baseHref: /flutter_participants_lottery/
+          channel: 'stable'
+      - run: flutter pub get
+      - run: dart run pubspec_extract
+      - run: flutter build web --release --base-href "/flutter_participants_lottery/"
