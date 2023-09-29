@@ -3,7 +3,7 @@
 // ignore_for_file: public_member_api_docs, constant_identifier_names, avoid_classes_with_only_static_members
 
 mixin Pubspec {
-  static final buildDate = DateTime.utc(2023, 3, 9, 21, 32, 52);
+  static final buildDate = DateTime.utc(2023, 9, 29, 7, 50, 47);
 
   static const name = 'flutter_participants_lottery';
 
@@ -12,49 +12,48 @@ mixin Pubspec {
 
   static const publish_to = 'none';
 
-  static const versionFull = '2.0.0+2';
+  static const versionFull = '2.1.0+1';
 
-  static const version = '2.0.0';
+  static const version = '2.1.0';
 
-  static const versionSmall = '2.0';
+  static const versionSmall = '2.1';
 
   static const versionMajor = 2;
 
-  static const versionMinor = 0;
+  static const versionMinor = 1;
 
   static const versionPatch = 0;
 
-  static const versionBuild = 2;
+  static const versionBuild = 1;
 
   static const versionPreRelease = '';
 
   static const versionIsPreRelease = false;
 
   static const environment = <dynamic, dynamic>{
-    'sdk': '>=2.19.4 <3.0.0',
+    'sdk': '>=3.1.3 <4.0.0',
   };
 
   static const dependencies = <dynamic, dynamic>{
     'flutter': <dynamic, dynamic>{
       'sdk': 'flutter',
     },
-    'cupertino_icons': '^1.0.5',
+    'about': '^2.1.3',
     'circular_countdown_timer': '^0.2.3',
     'emoji_alert': '^1.1.0',
-    'google_fonts': '^4.0.3',
-    'random_avatar': '^0.0.8',
-    'get': '^4.6.5',
+    'get': '^4.6.6',
     'get_storage': '^2.1.1',
-    'about': '^2.1.1',
+    'google_fonts': '^6.1.0',
+    'random_avatar': '^0.0.8',
   };
 
   static const dev_dependencies = <dynamic, dynamic>{
     'flutter_test': <dynamic, dynamic>{
       'sdk': 'flutter',
     },
-    'flutter_lints': '^2.0.1',
+    'build_runner': '^2.4.6',
+    'flutter_lints': '^2.0.3',
     'pubspec_extract': '^2.0.5',
-    'build_runner': '^2.3.3',
   };
 
   static const flutter = <dynamic, dynamic>{
