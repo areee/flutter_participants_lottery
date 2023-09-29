@@ -5,7 +5,6 @@ PreferredSizeWidget customAppBar(
   return AppBar(
     title: Text(
       title,
-      style: Theme.of(context).textTheme.headlineMedium,
     ),
     centerTitle: true,
     actions: actions,

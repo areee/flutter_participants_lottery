@@ -2,7 +2,7 @@ name: flutter_participants_lottery
 description: Osallistujien arvontasovellus. A participants lottery app.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 2.1.0+1
+version: 2.2.0+1
 
 _author: Arttu Ylhävuori
 

@@ -18,16 +18,15 @@ class CustomCircularCountDownTimer extends StatelessWidget {
       height: MediaQuery.of(context).size.height / 2,
       duration: c.timerDuration.value,
       initialDuration: 0,
-      fillColor: Theme.of(context).colorScheme.secondary,
+      fillColor: Theme.of(context).colorScheme.primary,
       ringColor: Colors.grey[300]!,
       controller: c.countDownController.value,
       ringGradient: null,
       fillGradient: null,
-      backgroundColor: Theme.of(context).colorScheme.primary,
       backgroundGradient: null,
       strokeWidth: 20.0,
       strokeCap: StrokeCap.round,
-      textStyle: Theme.of(context).textTheme.displaySmall,
+      textStyle: Theme.of(context).textTheme.displayMedium,
       textFormat: CountdownTextFormat.MM_SS,
       isReverse: true,
       isReverseAnimation: true,
@@ -49,9 +48,12 @@ class CustomCircularCountDownTimer extends StatelessWidget {
         enableMainButton: true,
         mainButtonText: Text(
           'Sulje',
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).colorScheme.onPrimary,
+              ),
         ),
         mainButtonColor: Theme.of(context).colorScheme.primary,
+        secondaryButtonColor: Theme.of(context).colorScheme.secondary,
         onMainButtonPressed: () {
           Get.back();
         },
