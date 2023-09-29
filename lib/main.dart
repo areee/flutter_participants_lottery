@@ -9,12 +9,17 @@ import 'pages/home_page.dart';
 
 Future<void> main() async {
   await GetStorage.init();
-  setWindowTitle('Osallistujien arvonta');
-  runApp(const FplApp());
+
+  const appName = 'Osallistujien arvonta';
+
+  setWindowTitle(appName);
+  runApp(const FplApp(appName));
 }
 
 class FplApp extends StatelessWidget {
-  const FplApp({super.key});
+  const FplApp(this.appName, {super.key});
+
+  final String appName;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +36,7 @@ class FplApp extends StatelessWidget {
         ),
       ],
       debugShowCheckedModeBanner: false,
-      title: 'Osallistujien arvonta',
+      title: appName,
       darkTheme: fplTheme(Brightness.dark),
       theme: fplTheme(Brightness.light),
     );
