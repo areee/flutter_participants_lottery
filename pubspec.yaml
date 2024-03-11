@@ -17,7 +17,7 @@ dependencies:
   emoji_alert: ^1.1.0
   get: ^4.6.6
   get_storage: ^2.1.1
-  google_fonts: ^6.2.0
+  google_fonts: ^6.2.1
   random_avatar: ^0.0.8
 
 dev_dependencies:
