@@ -1,10 +1,11 @@
 name: Build and Deploy to Github Pages 🚀
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+
 permissions:
   contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -15,12 +16,18 @@ jobs:
       - name: Setup Flutter 🔧
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
 
       - name: Get Packages and Run Pubspec Extract 📦
         run: |
           flutter pub get
           dart run pubspec_extract
+
+      - name: Verify formatting 🧼
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze 🕵️
+        run: dart analyze
 
       - name: Build Web 🌐
         run: flutter build web --release --base-href "/flutter_participants_lottery/"
