@@ -1,6 +1,7 @@
 import 'package:about/about.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_participants_lottery/pubspec.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class About extends StatelessWidget {
   const About({super.key});
@@ -21,28 +22,33 @@ class About extends StatelessWidget {
         Pubspec.description,
         textAlign: TextAlign.justify,
       ),
-      // applicationIcon: const Image(
-      //   image: AssetImage('assets/icon.png'),
-      //   width: 100,
-      //   height: 100,
-      // ),
       applicationLegalese: 'Copyright © {{ author }}, {{ year }}',
-      children: const <Widget>[
-        // MarkdownPageListTile(
-        //   filename: 'README.md',
-        //   title: Text('Näytä readme-tiedosto'),
-        //   icon: Icon(Icons.all_inclusive),
-        // ),
-        MarkdownPageListTile(
+      children: <Widget>[
+        ListTile(
+          title: const Text('Lähdekoodi'),
+          subtitle: const Text('GitHub'),
+          leading: const Icon(Icons.code),
+          onTap: _launchURL,
+        ),
+        const MarkdownPageListTile(
           filename: 'LICENSE.md',
           title: Text('Näytä lisenssitiedosto'),
           icon: Icon(Icons.description),
         ),
-        LicensesPageListTile(
+        const LicensesPageListTile(
           title: Text('Avoimen lähdekoodin lisenssit'),
           icon: Icon(Icons.favorite),
         ),
       ],
     );
+  }
+
+  Future<void> _launchURL() async {
+    final uri = Uri.parse(Pubspec.repository);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch $uri';
+    }
   }
 }
